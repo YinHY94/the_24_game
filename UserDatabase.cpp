@@ -18,7 +18,6 @@ bool UserDatabase::loadFromFile(const QString& filename)
 
     QFile file(filename);
     if (!file.exists()) {
-        qDebug() << "用户数据库不存在，将创建新文件";
         return true;
     }
 

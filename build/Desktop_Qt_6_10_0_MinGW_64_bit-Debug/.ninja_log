@@ -1,0 +1,18 @@
+# ninja log v5
+3	464	7853555061968809	The_24_Game_autogen/timestamp	20884c748307d170
+3	464	7853555061968809	The_24_Game_autogen/mocs_compilation.cpp	20884c748307d170
+3	464	7853555061968809	D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/The_24_Game_autogen/timestamp	20884c748307d170
+3	464	7853555061968809	D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/The_24_Game_autogen/mocs_compilation.cpp	20884c748307d170
+478	1860	7853555076586435	CMakeFiles/The_24_Game.dir/The_24_Game_autogen/mocs_compilation.cpp.obj	dd1c321ad8901f59
+482	1892	7853555076907056	CMakeFiles/The_24_Game.dir/main.cpp.obj	132ee2c14608ce14
+493	1959	7853555077554037	CMakeFiles/The_24_Game.dir/LoginDialog.cpp.obj	c18f450f1611ff7e
+489	2081	7853555078781391	CMakeFiles/The_24_Game.dir/UserDatabase.cpp.obj	deca5b61ab4f0087
+485	2619	7853555084177253	CMakeFiles/The_24_Game.dir/mainwindow.cpp.obj	492a3e0dbe7c06e
+8	392	7853556055927516	The_24_Game_autogen/timestamp	20884c748307d170
+8	392	7853556055927516	The_24_Game_autogen/mocs_compilation.cpp	20884c748307d170
+8	392	7853556055927516	D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/The_24_Game_autogen/timestamp	20884c748307d170
+8	392	7853556055927516	D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/The_24_Game_autogen/mocs_compilation.cpp	20884c748307d170
+396	1708	7853556069677708	CMakeFiles/The_24_Game.dir/main.cpp.obj	132ee2c14608ce14
+392	1736	7853556069956117	CMakeFiles/The_24_Game.dir/The_24_Game_autogen/mocs_compilation.cpp.obj	dd1c321ad8901f59
+399	2449	7853556077108825	CMakeFiles/The_24_Game.dir/mainwindow.cpp.obj	492a3e0dbe7c06e
+2449	2732	7853556079855815	The_24_Game.exe	f438880bac193387

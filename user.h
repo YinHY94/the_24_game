@@ -10,7 +10,6 @@ public:
     QString password;
     int score = 0;
 
-    // 构造函数
     User() = default;
     User(const QString& n, const QString& p = "", int s = 0)
         : name(n), password(p), score(s) {}
