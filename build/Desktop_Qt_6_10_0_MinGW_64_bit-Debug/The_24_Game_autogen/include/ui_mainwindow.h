@@ -39,20 +39,16 @@ public:
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QPushButton *loginBtn;
+    QPushButton *registerBtn;
     QWidget *pageMain;
     QVBoxLayout *verticalLayout_2;
     QLabel *label_2;
-    QFrame *frameBottom;
-    QHBoxLayout *horizontalLayout_bottom;
-    QLabel *labelStatus;
-    QSpacerItem *horizontalSpacer_2;
-    QLabel *labelVersion;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(900, 620);
+        MainWindow->resize(972, 606);
         MainWindow->setStyleSheet(QString::fromUtf8("\n"
 "    QMainWindow { background: #F8FAFC; }\n"
 "   "));
@@ -151,6 +147,39 @@ public:
 
         verticalLayout->addWidget(loginBtn);
 
+        registerBtn = new QPushButton(pageWelcome);
+        registerBtn->setObjectName("registerBtn");
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(registerBtn->sizePolicy().hasHeightForWidth());
+        registerBtn->setSizePolicy(sizePolicy);
+        registerBtn->setMinimumSize(QSize(0, 40));
+        QFont font4;
+        font4.setPointSize(12);
+        font4.setBold(true);
+        registerBtn->setFont(font4);
+        registerBtn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        registerBtn->setStyleSheet(QString::fromUtf8("\n"
+"            QPushButton {\n"
+"                color: #6366F1;\n"
+"                background: transparent;\n"
+"                border: none;\n"
+"                padding: 8px 16px;\n"
+"                border-radius: 6px;\n"
+"            }\n"
+"            QPushButton:hover {\n"
+"                background: rgba(99, 102, 241, 0.1);\n"
+"                color: #4F46E5;\n"
+"            }\n"
+"            QPushButton:pressed {\n"
+"                background: rgba(99, 102, 241, 0.2);\n"
+"            }\n"
+"        "));
+        registerBtn->setFlat(true);
+
+        verticalLayout->addWidget(registerBtn);
+
         stackedWidget->addWidget(pageWelcome);
         pageMain = new QWidget();
         pageMain->setObjectName("pageMain");
@@ -158,43 +187,15 @@ public:
         verticalLayout_2->setObjectName("verticalLayout_2");
         label_2 = new QLabel(pageMain);
         label_2->setObjectName("label_2");
-        QFont font4;
-        font4.setPointSize(20);
-        label_2->setFont(font4);
+        QFont font5;
+        font5.setPointSize(20);
+        label_2->setFont(font5);
 
         verticalLayout_2->addWidget(label_2);
 
         stackedWidget->addWidget(pageMain);
 
         verticalLayout_main->addWidget(stackedWidget);
-
-        frameBottom = new QFrame(centralwidget);
-        frameBottom->setObjectName("frameBottom");
-        frameBottom->setMaximumSize(QSize(16777215, 32));
-        frameBottom->setStyleSheet(QString::fromUtf8("\n"
-"        background: #1E293B;\n"
-"        color: #94A3B8;\n"
-"        font-size: 12px;\n"
-"       "));
-        horizontalLayout_bottom = new QHBoxLayout(frameBottom);
-        horizontalLayout_bottom->setObjectName("horizontalLayout_bottom");
-        horizontalLayout_bottom->setContentsMargins(12, -1, 12, -1);
-        labelStatus = new QLabel(frameBottom);
-        labelStatus->setObjectName("labelStatus");
-
-        horizontalLayout_bottom->addWidget(labelStatus);
-
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
-
-        horizontalLayout_bottom->addItem(horizontalSpacer_2);
-
-        labelVersion = new QLabel(frameBottom);
-        labelVersion->setObjectName("labelVersion");
-
-        horizontalLayout_bottom->addWidget(labelVersion);
-
-
-        verticalLayout_main->addWidget(frameBottom);
 
         MainWindow->setCentralWidget(centralwidget);
 
@@ -211,12 +212,11 @@ public:
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "24\347\202\271\346\270\270\346\210\217\344\270\255\345\277\203", nullptr));
         labelLogo->setText(QCoreApplication::translate("MainWindow", "24\347\202\271\346\270\270\346\210\217", nullptr));
         labelUser->setText(QCoreApplication::translate("MainWindow", "\346\234\252\347\231\273\345\275\225", nullptr));
-        logoutBtn->setText(QCoreApplication::translate("MainWindow", "\347\231\273\345\207\272", nullptr));
+        logoutBtn->setText(QCoreApplication::translate("MainWindow", "\351\200\200\345\207\272\347\231\273\345\275\225", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "\346\254\242\350\277\216\344\275\277\347\224\250 24 \347\202\271\346\270\270\346\210\217", nullptr));
         loginBtn->setText(QCoreApplication::translate("MainWindow", "\347\253\213\345\215\263\347\231\273\345\275\225", nullptr));
+        registerBtn->setText(QCoreApplication::translate("MainWindow", "\346\262\241\346\234\211\350\264\246\345\217\267\357\274\237\347\253\213\345\215\263\346\263\250\345\206\214", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "\344\270\273\345\212\237\350\203\275\345\214\272\357\274\210\345\267\262\347\231\273\345\275\225\357\274\211", nullptr));
-        labelStatus->setText(QCoreApplication::translate("MainWindow", "\345\260\261\347\273\252", nullptr));
-        labelVersion->setText(QCoreApplication::translate("MainWindow", "v1.0.0", nullptr));
     } // retranslateUi
 
 };

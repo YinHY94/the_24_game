@@ -29,6 +29,7 @@
 #include <QDir>
 
 #include "LoginDialog.h"
+#include "RegisterDialog.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -54,14 +55,8 @@ MainWindow::~MainWindow()
    ------------------------------------------------------------- */
 void MainWindow::initializeUI()
 {
-    // 登录前隐藏相关控件
     ui->logoutBtn->setVisible(false);
-    // updateBtnState(false);  // 如果有状态更新函数
-
-    // 设置其他控件初始状态
-    // ui->searchLineEdit->setEnabled(false);
-    // ui->searchButton->setEnabled(false);
-    // ... 其他初始化
+    ui->labelUser->setText("未登录");
 }
 
 /* -------------------------------------------------------------
@@ -95,6 +90,7 @@ void MainWindow::UserLogin()
 
         // 更新界面状态
         ui->logoutBtn->setVisible(true);
+        ui->labelUser->setText(QString("%1").arg(user->name));
         updateUIAfterLogin();
 
     } else {
@@ -112,7 +108,7 @@ void MainWindow::UserLogout()
     ui->logoutBtn->setVisible(false);
     initializeUI();
 
-    QMessageBox::information(this, "登出成功", "您已安全登出");
+    QMessageBox::information(this, "登出成功", "您已退出登录");
 }
 
 /* -------------------------------------------------------------
@@ -161,36 +157,60 @@ bool MainWindow::verifyUserLogin(const QString& account, const QString& password
     return false;
 }
 
-/* -------------------------------------------------------------
-   自动连接的槽函数（Qt Designer 自动连接）
-   ------------------------------------------------------------- */
+void MainWindow::UserRegister()
+{
+    // 创建并显示登录对话框
+    RegisterDialog dialog(this);
+    if (dialog.exec() != QDialog::Accepted) {
+        return;  // 用户取消注册
+    }
 
-/**
- * 登录按钮点击槽函数
- * 自动连接：on_loginButton_clicked()
- */
+    // 获取用户输入
+    QString inputAccount = dialog.account();
+    QString inputPassword = dialog.password();
+    QString inputConfirm = dialog.confirm();
+
+    // 基本验证：输入不能为空
+    if (inputAccount.isEmpty() || inputPassword.isEmpty() ) {
+        QMessageBox::warning(this, "注册失败", "所有字段不能为空！");
+        return;
+    }
+    else if (inputPassword!=inputConfirm){
+        QMessageBox::warning(this, "注册失败", "两次输入的密码不一致！");
+        return;
+    }
+    else if (inputPassword.length()<6){
+        QMessageBox::warning(this, "注册失败", "密码长度不得小于六位！");
+        return;
+    }
+
+    // 验证用户身份
+    User user = User(inputAccount,inputPassword,0);
+    if (m_userDb.addUser(user)) {
+        QMessageBox::information(this, "注册成功",QString("欢迎新用户"));
+    } else {
+        // 注册失败
+        QMessageBox::warning(this, "注册失败", "用户名已存在！");
+    }
+}
+
+
+
 void MainWindow::on_loginBtn_clicked()
 {
     UserLogin();
 }
 
-/**
- * 登出按钮点击槽函数
- * 自动连接：on_logoutButton_clicked()
- */
+
 void MainWindow::on_logoutBtn_clicked()
 {
     UserLogout();
 }
 
-/**
- * 用户注册按钮点击槽函数（如果有注册功能）
- * 自动连接：on_registerButton_clicked()
- */
+
 void MainWindow::on_registerBtn_clicked()
 {
-    // 显示注册对话框（待实现）
-    // UserRegister();
+    UserRegister();
 }
 
 

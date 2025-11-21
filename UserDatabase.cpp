@@ -6,7 +6,6 @@
 
 UserDatabase::UserDatabase()
 {
-    // 假设文件在程序同目录，建议用 QCoreApplication::applicationDirPath()
     m_filename = "users.json";
     loadFromFile(m_filename);
 }
@@ -58,11 +57,10 @@ bool UserDatabase::saveToFile(const QString& filename) const
         array.append(obj);
     }
 
-    QFile file(filename.isEmpty() ? m_filename : filename);
+    QFile file(filename);
     if (!file.open(QIODevice::WriteOnly)) {
         return false;
     }
-
     file.write(QJsonDocument(array).toJson(QJsonDocument::Indented));
     file.close();
     return true;
@@ -81,7 +79,7 @@ const User* UserDatabase::verifyLogin(const QString& name, const QString& passwo
 bool UserDatabase::addUser(const User& user)
 {
     // 检查重名
-    for (const User& u : m_users) {
+    for (const User& u :std::as_const(m_users)) {
         if (u.name == user.name) {
             return false;
         }

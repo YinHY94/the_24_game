@@ -329,6 +329,12 @@
 			null
 		],
 		[
+			"D:/Qt_Project/The_24_Game/RegisterDialog.h",
+			"MU",
+			"EWIEGA46WW/moc_RegisterDialog.cpp",
+			null
+		],
+		[
 			"D:/Qt_Project/The_24_Game/UserDatabase.h",
 			"MU",
 			"EWIEGA46WW/moc_UserDatabase.cpp",
@@ -419,6 +425,7 @@
 	"SOURCES" : 
 	[
 		[ "D:/Qt_Project/The_24_Game/LoginDialog.cpp", "MU", null ],
+		[ "D:/Qt_Project/The_24_Game/RegisterDialog.cpp", "MU", null ],
 		[ "D:/Qt_Project/The_24_Game/UserDatabase.cpp", "MU", null ],
 		[ "D:/Qt_Project/The_24_Game/main.cpp", "MU", null ],
 		[ "D:/Qt_Project/The_24_Game/mainwindow.cpp", "MU", null ]

@@ -39,6 +39,7 @@ private:
     const User* m_currentUser = nullptr;  // 当前登录用户
 
     void initializeUI();
+    void UserRegister();
     void UserLogin();
     void UserLogout();
     void updateUIAfterLogin();

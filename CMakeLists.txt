@@ -28,6 +28,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         UserDatabase.cpp
         LoginDialog.h
         LoginDialog.cpp
+        RegisterDialog.h
+        RegisterDialog.cpp
 
 
     )
