@@ -169,7 +169,7 @@ bool MainWindow::verifyUserLogin(const QString& account, const QString& password
  * 登录按钮点击槽函数
  * 自动连接：on_loginButton_clicked()
  */
-void MainWindow::on_loginButton_clicked()
+void MainWindow::on_loginBtn_clicked()
 {
     UserLogin();
 }
@@ -178,7 +178,7 @@ void MainWindow::on_loginButton_clicked()
  * 登出按钮点击槽函数
  * 自动连接：on_logoutButton_clicked()
  */
-void MainWindow::on_logoutButton_clicked()
+void MainWindow::on_logoutBtn_clicked()
 {
     UserLogout();
 }
@@ -187,8 +187,10 @@ void MainWindow::on_logoutButton_clicked()
  * 用户注册按钮点击槽函数（如果有注册功能）
  * 自动连接：on_registerButton_clicked()
  */
-void MainWindow::on_registerButton_clicked()
+void MainWindow::on_registerBtn_clicked()
 {
     // 显示注册对话框（待实现）
     // UserRegister();
 }
+
+

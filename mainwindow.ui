@@ -143,7 +143,7 @@
        <string notr="true">background: transparent;</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pageWelcome">
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -183,7 +183,7 @@
           <property name="styleSheet">
            <string notr="true">
             QPushButton {
-                background: #6366F1;
+                background: #000080;
                 color: white;
                 border-radius: 12px;
             }

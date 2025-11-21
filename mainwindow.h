@@ -26,9 +26,9 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_loginButton_clicked();
-    void on_logoutButton_clicked();
-    void on_registerButton_clicked();
+    void on_loginBtn_clicked();
+    void on_logoutBtn_clicked();
+    void on_registerBtn_clicked();
 
 
 

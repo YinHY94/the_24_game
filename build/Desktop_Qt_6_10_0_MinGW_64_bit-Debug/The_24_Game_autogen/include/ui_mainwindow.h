@@ -142,7 +142,7 @@ public:
         loginBtn->setFont(font3);
         loginBtn->setStyleSheet(QString::fromUtf8("\n"
 "            QPushButton {\n"
-"                background: #6366F1;\n"
+"                background: #000080;\n"
 "                color: white;\n"
 "                border-radius: 12px;\n"
 "            }\n"
@@ -200,7 +200,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
