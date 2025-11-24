@@ -30,6 +30,7 @@
 
 #include "LoginDialog.h"
 #include "RegisterDialog.h"
+#include "GameWidget.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -39,20 +40,17 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+
+
     initializeUI();
 }
 
-/* -------------------------------------------------------------
-   析构函数：清理资源
-   ------------------------------------------------------------- */
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
-/* -------------------------------------------------------------
-   初始化界面：设置未登录状态下的控件可见性
-   ------------------------------------------------------------- */
+
 void MainWindow::initializeUI()
 {
     ui->logoutBtn->setVisible(false);
@@ -119,7 +117,7 @@ void MainWindow::updateUIAfterLogin()
     if (!m_currentUser) {
         return;
     }
-
+    m_gameWidget=new GameWidget(*m_currentUser,this);
     // 显示当前用户信息（如果有状态栏或标签）
     // ui->statusBarLabel->setText(QString("已登录：%1").arg(m_currentUser->name));
 

@@ -323,6 +323,12 @@
 	"HEADERS" : 
 	[
 		[
+			"D:/Qt_Project/The_24_Game/GameWidget.h",
+			"MU",
+			"EWIEGA46WW/moc_GameWidget.cpp",
+			null
+		],
+		[
 			"D:/Qt_Project/The_24_Game/LoginDialog.h",
 			"MU",
 			"EWIEGA46WW/moc_LoginDialog.cpp",
@@ -338,6 +344,12 @@
 			"D:/Qt_Project/The_24_Game/UserDatabase.h",
 			"MU",
 			"EWIEGA46WW/moc_UserDatabase.cpp",
+			null
+		],
+		[
+			"D:/Qt_Project/The_24_Game/game_logic.h",
+			"MU",
+			"EWIEGA46WW/moc_game_logic.cpp",
 			null
 		],
 		[
@@ -424,9 +436,11 @@
 	"SETTINGS_FILE" : "D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/The_24_Game_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "D:/Qt_Project/The_24_Game/GameWidget.cpp", "MU", null ],
 		[ "D:/Qt_Project/The_24_Game/LoginDialog.cpp", "MU", null ],
 		[ "D:/Qt_Project/The_24_Game/RegisterDialog.cpp", "MU", null ],
 		[ "D:/Qt_Project/The_24_Game/UserDatabase.cpp", "MU", null ],
+		[ "D:/Qt_Project/The_24_Game/game_logic.cpp", "MU", null ],
 		[ "D:/Qt_Project/The_24_Game/main.cpp", "MU", null ],
 		[ "D:/Qt_Project/The_24_Game/mainwindow.cpp", "MU", null ]
 	],

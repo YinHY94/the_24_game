@@ -7,6 +7,7 @@
 QT_BEGIN_NAMESPACE
 class QLineEdit;
 class QPushButton;
+class QCheckBox;
 QT_END_NAMESPACE
 
 
@@ -34,6 +35,8 @@ private:
 
     QPushButton *m_okBtn;         // 注册按钮
     QPushButton *m_cancelBtn;     // 取消按钮
+
+    QCheckBox   *m_showPwd;       // 显示密码
 };
 
 

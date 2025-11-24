@@ -12,16 +12,13 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-
+class GameWidget;
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:  
-    QStackedWidget* stackedWidget;
-    QWidget* loginPage;
-
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
@@ -37,6 +34,10 @@ private:
     static constexpr auto USER_FILE="user.json";
     UserDatabase m_userDb;           // 用户数据管理
     const User* m_currentUser = nullptr;  // 当前登录用户
+    QStackedWidget* stackedWidget;
+    QWidget* loginPage;
+    GameWidget *m_gameWidget = nullptr;
+
 
     void initializeUI();
     void UserRegister();

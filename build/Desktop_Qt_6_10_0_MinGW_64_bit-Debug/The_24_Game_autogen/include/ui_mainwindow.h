@@ -48,7 +48,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(972, 606);
+        MainWindow->resize(260, 222);
         MainWindow->setStyleSheet(QString::fromUtf8("\n"
 "    QMainWindow { background: #F8FAFC; }\n"
 "   "));
@@ -201,7 +201,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

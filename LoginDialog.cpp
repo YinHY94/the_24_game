@@ -76,11 +76,9 @@ LoginDialog::LoginDialog(QWidget *parent)
     // 信号槽连接（点击按钮或回车均可确认登录）
     connect(m_okBtn,     &QPushButton::clicked, this, &QDialog::accept);
     connect(m_cancelBtn, &QPushButton::clicked, this, &QDialog::reject);
-    connect(m_accountEdit,  &QLineEdit::returnPressed, this, [=](){m_passwordEdit->setFocus();});
-    connect(m_accountEdit,  &QLineEdit::returnPressed, this, [=](){m_passwordEdit->setFocus();});
+    connect(m_accountEdit,  &QLineEdit::returnPressed, [=](){m_passwordEdit->setFocus();});
     connect(m_passwordEdit, &QLineEdit::returnPressed, this, &QDialog::accept);
 
-    // 默认焦点在用户名输入框，方便直接输入
     m_accountEdit->setFocus();
 
 

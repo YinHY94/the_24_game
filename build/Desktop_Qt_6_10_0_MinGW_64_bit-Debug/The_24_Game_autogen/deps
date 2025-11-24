@@ -159,6 +159,7 @@ The_24_Game_autogen/timestamp: \
 	D:/Qt/6.10.0/mingw_64/include/QtWidgets/QMainWindow \
 	D:/Qt/6.10.0/mingw_64/include/QtWidgets/QPushButton \
 	D:/Qt/6.10.0/mingw_64/include/QtWidgets/QStackedWidget \
+	D:/Qt/6.10.0/mingw_64/include/QtWidgets/QWidget \
 	D:/Qt/6.10.0/mingw_64/include/QtWidgets/qabstractbutton.h \
 	D:/Qt/6.10.0/mingw_64/include/QtWidgets/qdialog.h \
 	D:/Qt/6.10.0/mingw_64/include/QtWidgets/qframe.h \
@@ -569,6 +570,8 @@ The_24_Game_autogen/timestamp: \
 	D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
 	D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
 	D:/Qt_Project/The_24_Game/CMakeLists.txt \
+	D:/Qt_Project/The_24_Game/GameWidget.cpp \
+	D:/Qt_Project/The_24_Game/GameWidget.h \
 	D:/Qt_Project/The_24_Game/LoginDialog.cpp \
 	D:/Qt_Project/The_24_Game/LoginDialog.h \
 	D:/Qt_Project/The_24_Game/RegisterDialog.cpp \
@@ -581,6 +584,8 @@ The_24_Game_autogen/timestamp: \
 	D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake \
 	D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake \
 	D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/The_24_Game_autogen/moc_predefs.h \
+	D:/Qt_Project/The_24_Game/game_logic.cpp \
+	D:/Qt_Project/The_24_Game/game_logic.h \
 	D:/Qt_Project/The_24_Game/main.cpp \
 	D:/Qt_Project/The_24_Game/mainwindow.cpp \
 	D:/Qt_Project/The_24_Game/mainwindow.h \
