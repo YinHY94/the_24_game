@@ -11,6 +11,7 @@
 #include <QRandomGenerator>
 #include <QRegularExpression>
 #include <QMessageBox>
+#include "difficultydialog.h"
 
 GameWidget::GameWidget(User currentUser, QWidget *parent) :
     QWidget(parent),
@@ -77,18 +78,36 @@ void GameWidget::resetGame()
 //     // updateInfoLabels();
 // }
 
+void GameWidget::startGame(){
+    resetGame();
+    chooseDifficulty();
+    startRound();
+    // 【开始游戏】
+    ui->m_startBtn->setText("结束游戏");
+
+    // 红色样式（完美适配你现在的深色主题）
+    ui->m_startBtn->setStyleSheet(
+        "QPushButton {"
+        "   background-color: #ef4444; color: white; "  // 红色背景，白字
+        "   border-radius: 6px; font-weight: bold; padding: 10px 20px;"
+        "}"
+        "QPushButton:hover { background-color: #dc2626; }"
+        "QPushButton:pressed { background-color: #b91c1c; }"
+        );
+}
+
 
 void GameWidget::on_m_startBtn_clicked()
 {
-    // // 先检查有没有登录
-    // if (m_userName.isEmpty()) {
-    //     m_messageLabel->setText(tr("当前未登录，请先登录后再开始游戏。"));
-    //     return;
-    // }
 
-    // 每次开始游戏，相当于重新开一轮三局
-    resetGame();
-    startRound();
+
+    if (!m_roundActive) {
+        // 每次开始游戏，相当于重新开一轮三局
+        startGame();
+    } else {
+        finishRound(true);
+    }
+
 }
 
 
@@ -218,9 +237,21 @@ void GameWidget::onTimerTick()
 
 void GameWidget::finishRound(bool timeoutOrWrong)
 {
+    ui->m_startBtn->setText("开始游戏");
+
+    // 恢复原始青色样式
+    ui->m_startBtn->setStyleSheet(
+        "QPushButton {"
+        "   background-color: #00BCD4; color: #1E1E1E; "
+        "   border-radius: 6px; font-weight: bold; padding: 10px 20px;"
+        "}"
+        "QPushButton:hover { background-color: #00E5FF; }"
+        "QPushButton:pressed { background-color: #00A6B8; }"
+        );
     m_timer->stop();
     m_roundActive = false;
     ui->m_submitBtn->setEnabled(false);
+    ui->m_startBtn->show();
 
     // 如果是错误 NO 或者超时，整轮游戏直接结束
     if (timeoutOrWrong) {
@@ -231,12 +262,10 @@ void GameWidget::finishRound(bool timeoutOrWrong)
         // updateRankLabel();
 
         //emit gameFinished(m_userName, m_totalScore);
-        updateInfoLabels();
-        return;
     }
 
     // 正常结束一局（答对或正确 NO）
-    if (m_roundIndex >= 3) {
+    else if (m_roundIndex >= 3) {
         // 三局全部完成，本轮结束
         ui->m_nextBtn->setEnabled(false);
 
@@ -261,7 +290,8 @@ void GameWidget::finishRound(bool timeoutOrWrong)
                 .arg(m_totalScore)
             );
     }
-
+    m_numbers.clear();
+    updateCardsOnUI();
     updateInfoLabels();
 }
 
@@ -281,7 +311,7 @@ void GameWidget::updateInfoLabels()
 
     int remain = m_roundActive ? (m_timeLimit - m_elapsed) : m_timeLimit;
     if (remain < 0) remain = 0;
-    if (m_elapsed== 0 ){
+    if (!m_roundActive){
         ui->m_timerLabel->setText(
             QString("剩余时间: -- 秒")
             );
@@ -323,6 +353,29 @@ void GameWidget::updateCardsOnUI()
 
         path = QString(QCoreApplication::applicationDirPath()+"/cards/c%1.png").arg(m_numbers[3]-1);
         pix=QPixmap(path);
+        ui->m_cardLabels_3->setPixmap(pix.scaled(
+            ui->m_cardLabels_3->size(),
+            Qt::KeepAspectRatio,
+            Qt::SmoothTransformation));
+    }
+    else{
+        QString path = QString(QCoreApplication::applicationDirPath()+"/cards/null.png");
+        QPixmap pix=QPixmap(path);
+        ui->m_cardLabels_0->setPixmap(pix.scaled(
+            ui->m_cardLabels_0->size(),
+            Qt::KeepAspectRatio,
+            Qt::SmoothTransformation));
+
+        ui->m_cardLabels_1->setPixmap(pix.scaled(
+            ui->m_cardLabels_1->size(),
+            Qt::KeepAspectRatio,
+            Qt::SmoothTransformation));
+
+        ui->m_cardLabels_2->setPixmap(pix.scaled(
+            ui->m_cardLabels_2->size(),
+            Qt::KeepAspectRatio,
+            Qt::SmoothTransformation));
+
         ui->m_cardLabels_3->setPixmap(pix.scaled(
             ui->m_cardLabels_3->size(),
             Qt::KeepAspectRatio,
@@ -378,43 +431,67 @@ void GameWidget::updateCardsOnUI()
 
 int GameWidget::calcRoundScore() const
 {
-    // 1. 计分只看“绝对用时”，不看难度的时间上限
-    //    这里设定：以 30 秒作为满分参考时间
-    const int baseTime = 90;  // 可以根据需要微调，比如 25、40 等
+    // 1. 参考时间：90秒
+    // const int baseTime = 90;
 
-    int t = m_elapsed;        // 实际用时（秒）
-    if (t >= baseTime) {
-        // 超过参考时间视为 0 分（但游戏本身是否超时由 m_timeLimit 决定）
-        return 0;
-    }
-
-    // 2. 剩余时间占参考时间的比例（0.0 ~ 1.0）
-    double ratio = static_cast<double>(baseTime - t) /
-                   static_cast<double>(baseTime);
-
-    // 3. 每题基础满分 1000 分
-    const int baseScore = 1000;
-
-    // 4. 难度系数：
-    //    简单：1.0 ；普通：1.15 ；困难：1.3
-    double difficultyMul = 1.0;
-    // switch (m_levelBox->currentIndex()) {
-    // case 0: // 简单
-    //     difficultyMul = 1.0;
-    //     break;
-    // case 1: // 普通
-    //     difficultyMul = 1.15;
-    //     break;
-    // case 2: // 困难
-    //     difficultyMul = 1.3;
-    //     break;
-    // default:
-    //     difficultyMul = 1.0;
-    //     break;
+    int t = m_elapsed;        // 实际用时
+    // if (t >= baseTime) {
+    //     return 0;
     // }
 
-    // 5. 最终得分：比例 * 基础分 * 难度倍数
-    int score = static_cast<int>(ratio * baseScore * difficultyMul + 0.5); // 四舍五入
+    // 2. 剩余时间占参考时间的比例（0.0 ~ 1.0）
+    // double ratio = static_cast<double>(baseTime - t) /
+    //                static_cast<double>(baseTime);
+
+    // 2. 定义比例，即每秒用时所扣分数
+    double ratio = 1.0;
+
+    // 3. 每题基础满分 100 分
+    const int baseScore = 100;
+
+    // 4. 难度系数：
+    //   简单：1.0 ；普通：1.05 ；困难：1.1
+    double difficultyMul = 1.0;
+    switch (m_difficulty) {
+    case Easy: // 简单
+        difficultyMul = 1.0;
+        break;
+    case Normal: // 普通
+        difficultyMul = 1.05;
+        break;
+    case Hard: // 困难
+        difficultyMul = 1.1;
+        break;
+    default:
+        difficultyMul = 1.0;
+        break;
+    }
+
+    // 4. 最终得分：基础满分-时间用时*比例
+    int score = static_cast<int>((baseScore - t * ratio) * difficultyMul + 0.5); // 四舍五入
     if (score < 0) score = 0;
     return score;
 }
+
+
+void GameWidget::chooseDifficulty(){
+    DifficultyDialog dialog(m_difficulty,this);
+    if (dialog.exec() != QDialog::Accepted) {
+        return;
+    }
+
+    switch (m_difficulty){
+        case Easy:
+            m_timeLimit=90;
+            break;
+        case Normal:
+            m_timeLimit=60;
+            break;
+        case Hard:
+            m_timeLimit=30;
+            break;
+
+    }
+
+}
+

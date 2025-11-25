@@ -2,5 +2,6 @@
 #include "EWIEGA46WW/moc_LoginDialog.cpp"
 #include "EWIEGA46WW/moc_RegisterDialog.cpp"
 #include "EWIEGA46WW/moc_RuleDialog.cpp"
+#include "EWIEGA46WW/moc_difficultydialog.cpp"
 #include "EWIEGA46WW/moc_gamewidget.cpp"
 #include "EWIEGA46WW/moc_mainwindow.cpp"

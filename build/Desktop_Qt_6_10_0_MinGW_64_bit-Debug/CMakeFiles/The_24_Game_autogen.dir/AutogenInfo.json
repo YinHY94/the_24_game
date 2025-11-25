@@ -347,6 +347,12 @@
 			null
 		],
 		[
+			"D:/Qt_Project/The_24_Game/difficultydialog.h",
+			"MU",
+			"EWIEGA46WW/moc_difficultydialog.cpp",
+			null
+		],
+		[
 			"D:/Qt_Project/The_24_Game/game_logic.h",
 			"MU",
 			"EWIEGA46WW/moc_game_logic.cpp",
@@ -446,6 +452,7 @@
 		[ "D:/Qt_Project/The_24_Game/RegisterDialog.cpp", "MU", null ],
 		[ "D:/Qt_Project/The_24_Game/RuleDialog.cpp", "MU", null ],
 		[ "D:/Qt_Project/The_24_Game/UserDatabase.cpp", "MU", null ],
+		[ "D:/Qt_Project/The_24_Game/difficultydialog.cpp", "MU", null ],
 		[ "D:/Qt_Project/The_24_Game/game_logic.cpp", "MU", null ],
 		[ "D:/Qt_Project/The_24_Game/gamewidget.cpp", "MU", null ],
 		[ "D:/Qt_Project/The_24_Game/main.cpp", "MU", null ],

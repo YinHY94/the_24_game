@@ -18,6 +18,13 @@ namespace Ui {
 class GameWidget;
 }
 
+
+enum Difficulty{
+    Easy,
+    Normal,
+    Hard
+};
+
 class GameWidget : public QWidget
 {
     Q_OBJECT
@@ -58,6 +65,7 @@ private:
     User        m_currentUser;
     GameLogic   m_logic;
     QVector<int> m_numbers;       ///< 当前题目的4个数
+    Difficulty   m_difficulty;
     bool        m_roundActive;    ///< 当前是否处于答题中
     bool        m_solvable;       ///< 当前4个数是否能算出24
     int         m_timeLimit;      ///< 当前题目的时间上限（秒）
@@ -67,9 +75,12 @@ private:
     int         m_lastRoundScore; ///< 最近一局的得分
 
 
+    void chooseDifficulty();
 
     /// 重置整个游戏状态（用于“开始游戏”之前）
     void resetGame();
+
+    void startGame();
 
     /// 开始下一局（最多3局）
     void startRound();

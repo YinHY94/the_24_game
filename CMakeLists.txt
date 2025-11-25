@@ -35,6 +35,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         gamewidget.h gamewidget.cpp gamewidget.ui
         RuleDialog.h
         RuleDialog.cpp
+        difficultydialog.h difficultydialog.cpp difficultydialog.ui
+
+
 
 
 
