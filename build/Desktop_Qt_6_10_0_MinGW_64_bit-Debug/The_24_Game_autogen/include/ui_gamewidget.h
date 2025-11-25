@@ -57,25 +57,45 @@ public:
             GameWidget->setObjectName("GameWidget");
         GameWidget->resize(680, 520);
         GameWidget->setStyleSheet(QString::fromUtf8("\n"
-"QWidget { background-color: #0f172a; color: #f9fafb; }\n"
-"QLabel  { font-size: 16px; }\n"
+"/* *************** \345\205\250\345\261\200\350\256\276\347\275\256 *************** */\n"
+"QWidget { \n"
+"    background-color: #1E1E1E; /* \344\270\273\350\203\214\346\231\257\350\211\262 */\n"
+"    color: #F0F0F0; /* \351\273\230\350\256\244\346\226\207\345\255\227\351\242\234\350\211\262 */\n"
+"}\n"
+"QLabel { \n"
+"    font-size: 16px; \n"
+"}\n"
+"QLineEdit {\n"
+"    background-color: #282C34; /* \346\267\261\350\211\262\350\276\223\345\205\245\346\241\206\350\203\214\346\231\257 */\n"
+"    border: 1px solid #475569; /* \346\237\224\345\222\214\350\276\271\346\241\206 */\n"
+"    padding: 8px; /* \345\242\236\345\212\240\345\206\205\350\276\271\350\267\235 */\n"
+"    border-radius: 6px;\n"
+"    font-size: 18px;\n"
+"    color: #F0F0F0;\n"
+"}\n"
+"\n"
+"/* *************** \345\274\272\350\260\203\346\214\211\351\222\256\346\240\267\345\274\217 *************** */\n"
 "QPushButton {\n"
-"    background-color: #10b981;\n"
-"    color: white;\n"
-"    padding: 8px 16px;\n"
-"    border-radius: 4px;\n"
+"    background-color: #00BCD4; /* \345\274\272\350\260\203\350\211\262: \347\247\221\346\212\200\351\235\222\350\211\262 */\n"
+""
+                        "    color: #1E1E1E; /* \351\273\221\350\211\262\345\255\227\344\275\223\357\274\214\351\253\230\345\257\271\346\257\224\345\272\246 */\n"
+"    padding: 10px 20px;\n"
+"    border-radius: 6px;\n"
 "    border: none;\n"
 "    font-size: 16px;\n"
+"    font-weight: bold;\n"
 "}\n"
-"QPushButton:disabled { background-color: #6b7280; }\n"
-"QPushButton:hover:!disabled { background-color: #059669; }\n"
-"QLineEdit {\n"
-"    background-color: #111827;\n"
-"    border: 1px solid #374151;\n"
-"    padding: 6px;\n"
-"    border-radius: 4px;\n"
-"    font-size: 18px;\n"
+"QPushButton:disabled { \n"
+"    background-color: #475569; /* \347\246\201\347\224\250\346\227\266\347\232\204\346\267\261\347\201\260\350\211\262 */\n"
+"    color: #AAAAAA;\n"
 "}\n"
+"QPushButton:hover:!disabled { \n"
+"    background-color: #00E5FF; /* \346\202\254\345\201\234\346\227\266\347\225\245\345\276\256\346\217\220\344\272\256 */\n"
+"}\n"
+"QPushButton:pressed:!disabled {\n"
+"    background-color: #00A6B8; /* \346\214\211\344\270\213\346\227\266\347\232\204\346\267\261\351\235\222\350\211\262 */\n"
+"}\n"
+"\n"
 "   "));
         mainLayout = new QVBoxLayout(GameWidget);
         mainLayout->setSpacing(20);
@@ -88,6 +108,13 @@ public:
         QFont font;
         font.setBold(true);
         m_userLabel->setFont(font);
+        m_userLabel->setStyleSheet(QString::fromUtf8("\n"
+"         background-color: #282C34; /* \346\267\261\350\211\262\345\215\241\347\211\207\350\203\214\346\231\257 */\n"
+"         color: #00BCD4; /* \345\274\272\350\260\203\350\211\262 */\n"
+"         padding: 6px 12px;\n"
+"         border-radius: 8px;\n"
+"         border: 1px solid #475569; /* \346\237\224\345\222\214\350\276\271\346\241\206 */\n"
+"        "));
 
         topLayout->addWidget(m_userLabel);
 
@@ -97,6 +124,13 @@ public:
 
         m_roundLabel = new QLabel(GameWidget);
         m_roundLabel->setObjectName("m_roundLabel");
+        m_roundLabel->setStyleSheet(QString::fromUtf8("\n"
+"         background-color: #282C34; \n"
+"         color: #F0F0F0; /* \347\231\275\350\211\262\346\226\207\345\255\227 */\n"
+"         padding: 6px 12px;\n"
+"         border-radius: 8px;\n"
+"         border: 1px solid #475569; \n"
+"        "));
 
         topLayout->addWidget(m_roundLabel);
 
@@ -107,6 +141,14 @@ public:
         m_timerLabel = new QLabel(GameWidget);
         m_timerLabel->setObjectName("m_timerLabel");
         m_timerLabel->setFont(font);
+        m_timerLabel->setStyleSheet(QString::fromUtf8("\n"
+"         background-color: #282C34; \n"
+"         color: #FBBF24; /* \350\256\241\346\227\266\345\231\250\346\251\231\350\211\262 */\n"
+"         padding: 6px 12px;\n"
+"         border-radius: 8px;\n"
+"         border: 1px solid #FBBF24; /* \346\251\231\350\211\262\350\276\271\346\241\206\345\274\272\350\260\203 */\n"
+"         font-size: 20px;\n"
+"        "));
 
         topLayout->addWidget(m_timerLabel);
 
@@ -117,6 +159,13 @@ public:
         m_scoreLabel = new QLabel(GameWidget);
         m_scoreLabel->setObjectName("m_scoreLabel");
         m_scoreLabel->setFont(font);
+        m_scoreLabel->setStyleSheet(QString::fromUtf8("\n"
+"         background-color: #282C34; \n"
+"         color: #00BCD4; /* \345\274\272\350\260\203\350\211\262 */\n"
+"         padding: 6px 12px;\n"
+"         border-radius: 8px;\n"
+"         border: 1px solid #475569; \n"
+"        "));
 
         topLayout->addWidget(m_scoreLabel);
 
@@ -130,7 +179,13 @@ public:
         m_cardLabels_0->setObjectName("m_cardLabels_0");
         m_cardLabels_0->setMinimumSize(QSize(100, 140));
         m_cardLabels_0->setMaximumSize(QSize(100, 140));
-        m_cardLabels_0->setStyleSheet(QString::fromUtf8("background-color: #1e293b; border: 3px solid #475569; border-radius: 12px;"));
+        m_cardLabels_0->setStyleSheet(QString::fromUtf8("\n"
+"         background-color: #282C34; \n"
+"         border: 3px solid #00BCD4; \n"
+"         border-radius: 0px; /* \347\233\264\350\247\222 */\n"
+"         font-size: 36px; \n"
+"         color: #F0F0F0; \n"
+"        "));
         m_cardLabels_0->setScaledContents(true);
         m_cardLabels_0->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
@@ -140,7 +195,13 @@ public:
         m_cardLabels_1->setObjectName("m_cardLabels_1");
         m_cardLabels_1->setMinimumSize(QSize(100, 140));
         m_cardLabels_1->setMaximumSize(QSize(100, 140));
-        m_cardLabels_1->setStyleSheet(QString::fromUtf8("background-color: #1e293b; border: 3px solid #475569; border-radius: 12px;"));
+        m_cardLabels_1->setStyleSheet(QString::fromUtf8("\n"
+"         background-color: #282C34; \n"
+"         border: 3px solid #00BCD4; \n"
+"         border-radius: 0px; \n"
+"         font-size: 36px; \n"
+"         color: #F0F0F0; \n"
+"        "));
         m_cardLabels_1->setScaledContents(true);
         m_cardLabels_1->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
@@ -150,7 +211,13 @@ public:
         m_cardLabels_2->setObjectName("m_cardLabels_2");
         m_cardLabels_2->setMinimumSize(QSize(100, 140));
         m_cardLabels_2->setMaximumSize(QSize(100, 140));
-        m_cardLabels_2->setStyleSheet(QString::fromUtf8("background-color: #1e293b; border: 3px solid #475569; border-radius: 12px;"));
+        m_cardLabels_2->setStyleSheet(QString::fromUtf8("\n"
+"         background-color: #282C34; \n"
+"         border: 3px solid #00BCD4; \n"
+"         border-radius: 0px; \n"
+"         font-size: 36px; \n"
+"         color: #F0F0F0; \n"
+"        "));
         m_cardLabels_2->setScaledContents(true);
         m_cardLabels_2->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
@@ -160,7 +227,13 @@ public:
         m_cardLabels_3->setObjectName("m_cardLabels_3");
         m_cardLabels_3->setMinimumSize(QSize(100, 140));
         m_cardLabels_3->setMaximumSize(QSize(100, 140));
-        m_cardLabels_3->setStyleSheet(QString::fromUtf8("background-color: #1e293b; border: 3px solid #475569; border-radius: 12px;"));
+        m_cardLabels_3->setStyleSheet(QString::fromUtf8("\n"
+"         background-color: #282C34; \n"
+"         border: 3px solid #00BCD4; \n"
+"         border-radius: 0px; \n"
+"         font-size: 36px; \n"
+"         color: #F0F0F0; \n"
+"        "));
         m_cardLabels_3->setScaledContents(true);
         m_cardLabels_3->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
@@ -174,6 +247,7 @@ public:
         exprTipLabel = new QLabel(GameWidget);
         exprTipLabel->setObjectName("exprTipLabel");
         exprTipLabel->setFont(font);
+        exprTipLabel->setStyleSheet(QString::fromUtf8("color: #94A3B8;"));
 
         exprLayout->addWidget(exprTipLabel);
 
@@ -189,6 +263,7 @@ public:
         horizontalLayout->setObjectName("horizontalLayout");
         m_messageLabel = new QLabel(GameWidget);
         m_messageLabel->setObjectName("m_messageLabel");
+        m_messageLabel->setStyleSheet(QString::fromUtf8("color: #FBBF24; font-weight: bold;"));
 
         horizontalLayout->addWidget(m_messageLabel);
 

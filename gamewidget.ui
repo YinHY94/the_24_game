@@ -15,25 +15,44 @@
   </property>
   <property name="styleSheet">
    <string notr="true">
-QWidget { background-color: #0f172a; color: #f9fafb; }
-QLabel  { font-size: 16px; }
+/* *************** 全局设置 *************** */
+QWidget { 
+    background-color: #1E1E1E; /* 主背景色 */
+    color: #F0F0F0; /* 默认文字颜色 */
+}
+QLabel { 
+    font-size: 16px; 
+}
+QLineEdit {
+    background-color: #282C34; /* 深色输入框背景 */
+    border: 1px solid #475569; /* 柔和边框 */
+    padding: 8px; /* 增加内边距 */
+    border-radius: 6px;
+    font-size: 18px;
+    color: #F0F0F0;
+}
+
+/* *************** 强调按钮样式 *************** */
 QPushButton {
-    background-color: #10b981;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 4px;
+    background-color: #00BCD4; /* 强调色: 科技青色 */
+    color: #1E1E1E; /* 黑色字体，高对比度 */
+    padding: 10px 20px;
+    border-radius: 6px;
     border: none;
     font-size: 16px;
+    font-weight: bold;
 }
-QPushButton:disabled { background-color: #6b7280; }
-QPushButton:hover:!disabled { background-color: #059669; }
-QLineEdit {
-    background-color: #111827;
-    border: 1px solid #374151;
-    padding: 6px;
-    border-radius: 4px;
-    font-size: 18px;
+QPushButton:disabled { 
+    background-color: #475569; /* 禁用时的深灰色 */
+    color: #AAAAAA;
 }
+QPushButton:hover:!disabled { 
+    background-color: #00E5FF; /* 悬停时略微提亮 */
+}
+QPushButton:pressed:!disabled {
+    background-color: #00A6B8; /* 按下时的深青色 */
+}
+
    </string>
   </property>
   <layout class="QVBoxLayout" name="mainLayout">
@@ -52,6 +71,15 @@ QLineEdit {
          <pointsize>-1</pointsize>
          <bold>true</bold>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+         background-color: #282C34; /* 深色卡片背景 */
+         color: #00BCD4; /* 强调色 */
+         padding: 6px 12px;
+         border-radius: 8px;
+         border: 1px solid #475569; /* 柔和边框 */
+        </string>
        </property>
        <property name="text">
         <string>玩家：未知</string>
@@ -73,6 +101,15 @@ QLineEdit {
      </item>
      <item>
       <widget class="QLabel" name="m_roundLabel">
+       <property name="styleSheet">
+        <string notr="true">
+         background-color: #282C34; 
+         color: #F0F0F0; /* 白色文字 */
+         padding: 6px 12px;
+         border-radius: 8px;
+         border: 1px solid #475569; 
+        </string>
+       </property>
        <property name="text">
         <string>第 1 局</string>
        </property>
@@ -99,6 +136,16 @@ QLineEdit {
          <bold>true</bold>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true">
+         background-color: #282C34; 
+         color: #FBBF24; /* 计时器橙色 */
+         padding: 6px 12px;
+         border-radius: 8px;
+         border: 1px solid #FBBF24; /* 橙色边框强调 */
+         font-size: 20px;
+        </string>
+       </property>
        <property name="text">
         <string>00:--</string>
        </property>
@@ -124,6 +171,15 @@ QLineEdit {
          <pointsize>-1</pointsize>
          <bold>true</bold>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+         background-color: #282C34; 
+         color: #00BCD4; /* 强调色 */
+         padding: 6px 12px;
+         border-radius: 8px;
+         border: 1px solid #475569; 
+        </string>
        </property>
        <property name="text">
         <string>总分：0</string>
@@ -152,7 +208,13 @@ QLineEdit {
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: #1e293b; border: 3px solid #475569; border-radius: 12px;</string>
+        <string notr="true">
+         background-color: #282C34; 
+         border: 3px solid #00BCD4; 
+         border-radius: 0px; /* 直角 */
+         font-size: 36px; 
+         color: #F0F0F0; 
+        </string>
        </property>
        <property name="text">
         <string/>
@@ -180,7 +242,13 @@ QLineEdit {
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: #1e293b; border: 3px solid #475569; border-radius: 12px;</string>
+        <string notr="true">
+         background-color: #282C34; 
+         border: 3px solid #00BCD4; 
+         border-radius: 0px; 
+         font-size: 36px; 
+         color: #F0F0F0; 
+        </string>
        </property>
        <property name="text">
         <string/>
@@ -208,7 +276,13 @@ QLineEdit {
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: #1e293b; border: 3px solid #475569; border-radius: 12px;</string>
+        <string notr="true">
+         background-color: #282C34; 
+         border: 3px solid #00BCD4; 
+         border-radius: 0px; 
+         font-size: 36px; 
+         color: #F0F0F0; 
+        </string>
        </property>
        <property name="text">
         <string/>
@@ -236,7 +310,13 @@ QLineEdit {
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: #1e293b; border: 3px solid #475569; border-radius: 12px;</string>
+        <string notr="true">
+         background-color: #282C34; 
+         border: 3px solid #00BCD4; 
+         border-radius: 0px; 
+         font-size: 36px; 
+         color: #F0F0F0; 
+        </string>
        </property>
        <property name="text">
         <string/>
@@ -261,6 +341,9 @@ QLineEdit {
          <bold>true</bold>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: #94A3B8;</string>
+       </property>
        <property name="text">
         <string>请输入计算表达式（或输入 NO 放弃）：</string>
        </property>
@@ -279,6 +362,9 @@ QLineEdit {
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="m_messageLabel">
+       <property name="styleSheet">
+        <string notr="true">color: #FBBF24; font-weight: bold;</string>
+       </property>
        <property name="text">
         <string>TextLabel</string>
        </property>
