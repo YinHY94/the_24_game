@@ -32,9 +32,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         RegisterDialog.cpp
         game_logic.h
         game_logic.cpp
-        GameWidget.h
-        GameWidget.cpp
-        GameWidget.ui
+        gamewidget.h gamewidget.cpp gamewidget.ui
+        RuleDialog.h
+        RuleDialog.cpp
+
+
+
 
 
     )

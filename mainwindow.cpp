@@ -31,6 +31,7 @@
 #include "LoginDialog.h"
 #include "RegisterDialog.h"
 #include "GameWidget.h"
+#include "RuleDialog.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -53,6 +54,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::initializeUI()
 {
+    ui->stackedWidget->setCurrentWidget(ui->pageWelcome);
     ui->logoutBtn->setVisible(false);
     ui->labelUser->setText("未登录");
 }
@@ -84,7 +86,7 @@ void MainWindow::UserLogin()
         // 登录成功
         m_currentUser = user;
         QMessageBox::information(this, "登录成功",
-                                 QString("欢迎回来，%1！当前积分：%2").arg(user->name).arg(user->score));
+                                 QString("欢迎回来，%1！当前最高得分：%2").arg(user->name).arg(user->score));
 
         // 更新界面状态
         ui->logoutBtn->setVisible(true);
@@ -105,7 +107,11 @@ void MainWindow::UserLogout()
     m_currentUser = nullptr;
     ui->logoutBtn->setVisible(false);
     initializeUI();
+    ui->stackedWidget->setCurrentWidget(ui->pageWelcome);
 
+    if(m_gameWidget!=nullptr){
+        delete m_gameWidget;
+    }
     QMessageBox::information(this, "登出成功", "您已退出登录");
 }
 
@@ -114,21 +120,15 @@ void MainWindow::UserLogout()
    ------------------------------------------------------------- */
 void MainWindow::updateUIAfterLogin()
 {
-    if (!m_currentUser) {
+    if (m_currentUser == nullptr) {
         return;
     }
     m_gameWidget=new GameWidget(*m_currentUser,this);
+    ui->stackedWidget->addWidget(m_gameWidget);
+    ui->stackedWidget->setCurrentWidget(m_gameWidget);
     // 显示当前用户信息（如果有状态栏或标签）
     // ui->statusBarLabel->setText(QString("已登录：%1").arg(m_currentUser->name));
 
-    // 启用搜索功能
-    // ui->searchLineEdit->setEnabled(true);
-    // ui->searchButton->setEnabled(true);
-
-    // 根据用户权限调整功能可见性
-    // if (m_currentUser->isAdmin) {
-    //     ui->adminPanel->setVisible(true);
-    // }
 }
 
 /* -------------------------------------------------------------
@@ -192,6 +192,14 @@ void MainWindow::UserRegister()
     }
 }
 
+
+void MainWindow::on_ruleBtn_clicked(){
+    RuleDialog dialog(this);
+    if (dialog.exec() != QDialog::Accepted) {
+        return;  // 用户取消注册
+    }
+
+}
 
 
 void MainWindow::on_loginBtn_clicked()

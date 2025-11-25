@@ -1,12 +1,12 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'Game24Widget.h'
+** Meta object code from reading C++ file 'GameWidget.h'
 **
 ** Created by: The Qt Meta Object Compiler version 69 (Qt 6.10.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "C:/Users/z/Desktop/the_24_game-main/Game24Widget.h"
+#include "C:/Users/z/Desktop/the_24_game-main/GameWidget.h"
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -16,7 +16,7 @@
 
 #include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'Game24Widget.h' doesn't include <QObject>."
+#error "The header file 'GameWidget.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 69
 #error "This file was generated using the moc from 6.10.0. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -31,14 +31,14 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 QT_WARNING_DISABLE_GCC("-Wuseless-cast")
 namespace {
-struct qt_meta_tag_ZN12Game24WidgetE_t {};
+struct qt_meta_tag_ZN12GameWidgetE_t {};
 } // unnamed namespace
 
-template <> constexpr inline auto Game24Widget::qt_create_metaobjectdata<qt_meta_tag_ZN12Game24WidgetE_t>()
+template <> constexpr inline auto GameWidget::qt_create_metaobjectdata<qt_meta_tag_ZN12GameWidgetE_t>()
 {
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
-        "Game24Widget",
+        "GameWidget",
         "gameFinished",
         "",
         "userName",
@@ -67,22 +67,22 @@ template <> constexpr inline auto Game24Widget::qt_create_metaobjectdata<qt_meta
     };
     QtMocHelpers::UintData qt_enums {
     };
-    return QtMocHelpers::metaObjectData<Game24Widget, qt_meta_tag_ZN12Game24WidgetE_t>(QMC::MetaObjectFlag{}, qt_stringData,
+    return QtMocHelpers::metaObjectData<GameWidget, qt_meta_tag_ZN12GameWidgetE_t>(QMC::MetaObjectFlag{}, qt_stringData,
             qt_methods, qt_properties, qt_enums);
 }
-Q_CONSTINIT const QMetaObject Game24Widget::staticMetaObject = { {
+Q_CONSTINIT const QMetaObject GameWidget::staticMetaObject = { {
     QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12Game24WidgetE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12Game24WidgetE_t>.data,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12GameWidgetE_t>.stringdata,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12GameWidgetE_t>.data,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN12Game24WidgetE_t>.metaTypes,
+    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN12GameWidgetE_t>.metaTypes,
     nullptr
 } };
 
-void Game24Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void GameWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<Game24Widget *>(_o);
+    auto *_t = static_cast<GameWidget *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->gameFinished((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2]))); break;
@@ -94,25 +94,25 @@ void Game24Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (Game24Widget::*)(const QString & , int )>(_a, &Game24Widget::gameFinished, 0))
+        if (QtMocHelpers::indexOfMethod<void (GameWidget::*)(const QString & , int )>(_a, &GameWidget::gameFinished, 0))
             return;
     }
 }
 
-const QMetaObject *Game24Widget::metaObject() const
+const QMetaObject *GameWidget::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *Game24Widget::qt_metacast(const char *_clname)
+void *GameWidget::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12Game24WidgetE_t>.strings))
+    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12GameWidgetE_t>.strings))
         return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
-int Game24Widget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int GameWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
     if (_id < 0)
@@ -131,7 +131,7 @@ int Game24Widget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void Game24Widget::gameFinished(const QString & _t1, int _t2)
+void GameWidget::gameFinished(const QString & _t1, int _t2)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1, _t2);
 }

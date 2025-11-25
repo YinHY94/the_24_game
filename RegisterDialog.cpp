@@ -32,7 +32,7 @@ RegisterDialog::RegisterDialog(QWidget *parent)
     // 输入框设置
     m_accountEdit->setPlaceholderText("请输入用户名");
     m_accountEdit->setMinimumHeight(35);
-    m_accountEdit->setMaxLength(20);
+    m_accountEdit->setMaxLength(12);
 
     m_passwordEdit->setEchoMode(QLineEdit::Password);   // 密码隐藏显示
     m_passwordEdit->setPlaceholderText("请输入密码");

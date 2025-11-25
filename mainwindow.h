@@ -26,7 +26,8 @@ private slots:
     void on_loginBtn_clicked();
     void on_logoutBtn_clicked();
     void on_registerBtn_clicked();
-
+    void on_ruleBtn_clicked();
+    // void on_rankBtn_clicked();
 
 
 private:
@@ -35,7 +36,6 @@ private:
     UserDatabase m_userDb;           // 用户数据管理
     const User* m_currentUser = nullptr;  // 当前登录用户
     QStackedWidget* stackedWidget;
-    QWidget* loginPage;
     GameWidget *m_gameWidget = nullptr;
 
 

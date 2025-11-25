@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Game24Widget</class>
- <widget class="QWidget" name="Game24Widget">
+ <class>GameWidget</class>
+ <widget class="QWidget" name="GameWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -100,7 +100,7 @@ QLineEdit {
         </font>
        </property>
        <property name="text">
-        <string>00:60</string>
+        <string>00:--</string>
        </property>
       </widget>
      </item>
@@ -270,6 +270,17 @@ QLineEdit {
       <widget class="QLineEdit" name="m_exprEdit">
        <property name="placeholderText">
         <string>例如：(3+5)*2+4</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="m_messageLabel">
+       <property name="text">
+        <string>TextLabel</string>
        </property>
       </widget>
      </item>

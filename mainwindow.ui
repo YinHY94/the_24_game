@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>260</width>
-    <height>222</height>
+    <width>862</width>
+    <height>532</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -79,6 +79,20 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="ruleBtn">
+         <property name="text">
+          <string>游戏规则</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="rankBtn">
+         <property name="text">
+          <string>排行榜</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="horizontalSpacer">
          <property name="orientation">
           <enum>Qt::Orientation::Horizontal</enum>
@@ -143,7 +157,7 @@
        <string notr="true">background: transparent;</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pageWelcome">
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -241,22 +255,6 @@
           </property>
           <property name="flat">
            <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="pageMain">
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="font">
-           <font>
-            <pointsize>20</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>主功能区（已登录）</string>
           </property>
          </widget>
         </item>

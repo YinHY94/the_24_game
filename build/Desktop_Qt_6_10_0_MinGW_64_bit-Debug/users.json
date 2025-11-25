@@ -8,5 +8,10 @@
         "name": "1",
         "password": "1",
         "score": 0
+    },
+    {
+        "name": "唐朝",
+        "password": "123456",
+        "score": 0
     }
 ]

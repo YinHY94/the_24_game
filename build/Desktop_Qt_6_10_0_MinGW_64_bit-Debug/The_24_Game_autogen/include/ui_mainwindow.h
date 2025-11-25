@@ -31,6 +31,8 @@ public:
     QFrame *frameTop;
     QHBoxLayout *horizontalLayout_top;
     QLabel *labelLogo;
+    QPushButton *ruleBtn;
+    QPushButton *rankBtn;
     QSpacerItem *horizontalSpacer;
     QLabel *labelUser;
     QPushButton *logoutBtn;
@@ -40,15 +42,12 @@ public:
     QLabel *label;
     QPushButton *loginBtn;
     QPushButton *registerBtn;
-    QWidget *pageMain;
-    QVBoxLayout *verticalLayout_2;
-    QLabel *label_2;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(260, 222);
+        MainWindow->resize(862, 532);
         MainWindow->setStyleSheet(QString::fromUtf8("\n"
 "    QMainWindow { background: #F8FAFC; }\n"
 "   "));
@@ -77,6 +76,16 @@ public:
         labelLogo->setStyleSheet(QString::fromUtf8("color: white;"));
 
         horizontalLayout_top->addWidget(labelLogo);
+
+        ruleBtn = new QPushButton(frameTop);
+        ruleBtn->setObjectName("ruleBtn");
+
+        horizontalLayout_top->addWidget(ruleBtn);
+
+        rankBtn = new QPushButton(frameTop);
+        rankBtn->setObjectName("rankBtn");
+
+        horizontalLayout_top->addWidget(rankBtn);
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
@@ -181,19 +190,6 @@ public:
         verticalLayout->addWidget(registerBtn);
 
         stackedWidget->addWidget(pageWelcome);
-        pageMain = new QWidget();
-        pageMain->setObjectName("pageMain");
-        verticalLayout_2 = new QVBoxLayout(pageMain);
-        verticalLayout_2->setObjectName("verticalLayout_2");
-        label_2 = new QLabel(pageMain);
-        label_2->setObjectName("label_2");
-        QFont font5;
-        font5.setPointSize(20);
-        label_2->setFont(font5);
-
-        verticalLayout_2->addWidget(label_2);
-
-        stackedWidget->addWidget(pageMain);
 
         verticalLayout_main->addWidget(stackedWidget);
 
@@ -201,7 +197,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -211,12 +207,13 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "24\347\202\271\346\270\270\346\210\217\344\270\255\345\277\203", nullptr));
         labelLogo->setText(QCoreApplication::translate("MainWindow", "24\347\202\271\346\270\270\346\210\217", nullptr));
+        ruleBtn->setText(QCoreApplication::translate("MainWindow", "\346\270\270\346\210\217\350\247\204\345\210\231", nullptr));
+        rankBtn->setText(QCoreApplication::translate("MainWindow", "\346\216\222\350\241\214\346\246\234", nullptr));
         labelUser->setText(QCoreApplication::translate("MainWindow", "\346\234\252\347\231\273\345\275\225", nullptr));
         logoutBtn->setText(QCoreApplication::translate("MainWindow", "\351\200\200\345\207\272\347\231\273\345\275\225", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "\346\254\242\350\277\216\344\275\277\347\224\250 24 \347\202\271\346\270\270\346\210\217", nullptr));
         loginBtn->setText(QCoreApplication::translate("MainWindow", "\347\253\213\345\215\263\347\231\273\345\275\225", nullptr));
         registerBtn->setText(QCoreApplication::translate("MainWindow", "\346\262\241\346\234\211\350\264\246\345\217\267\357\274\237\347\253\213\345\215\263\346\263\250\345\206\214", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "\344\270\273\345\212\237\350\203\275\345\214\272\357\274\210\345\267\262\347\231\273\345\275\225\357\274\211", nullptr));
     } // retranslateUi
 
 };

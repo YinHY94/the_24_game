@@ -22,6 +22,8 @@ public:
     // 添加新用户（注册）
     bool addUser(const User& user);
 
+    bool updateUserScore(const User& user);
+
     // 获取所有用户（排行榜用）
     const QVector<User>& users() const { return m_users; }
 

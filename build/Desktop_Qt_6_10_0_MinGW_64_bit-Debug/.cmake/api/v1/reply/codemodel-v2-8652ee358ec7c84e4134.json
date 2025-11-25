@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-74cb7d42e445ffabbf5f.json",
+					"jsonFile" : "directory-.-Debug-2d8daf575a50a1b64a9d.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "The_24_Game::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-The_24_Game-Debug-418e4ea0124cda4a20ea.json",
+					"jsonFile" : "target-The_24_Game-Debug-36c9d092ac20f26b3cbd.json",
 					"name" : "The_24_Game",
 					"projectIndex" : 0
 				},

@@ -1,4 +1,4 @@
-D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/The_24_Game_autogen/EWIEGA46WW/moc_GameWidget.cpp: D:/Qt_Project/The_24_Game/GameWidget.h \
+D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/The_24_Game_autogen/EWIEGA46WW/moc_gamewidget.cpp: D:/Qt_Project/The_24_Game/gamewidget.h \
   D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/The_24_Game_autogen/moc_predefs.h \
   D:/Qt/6.10.0/mingw_64/include/QtCore/QString \
   D:/Qt/6.10.0/mingw_64/include/QtCore/QVector \

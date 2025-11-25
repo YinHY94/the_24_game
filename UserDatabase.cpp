@@ -88,3 +88,16 @@ bool UserDatabase::addUser(const User& user)
     saveToFile(m_filename);
     return true;
 }
+
+bool UserDatabase::updateUserScore(const User& user){
+    for ( User& u :m_users) {
+        if (u.name == user.name) {
+            u.score = user.score;
+            saveToFile(m_filename);
+            return true;
+        }
+    }
+    return false;
+
+}
+

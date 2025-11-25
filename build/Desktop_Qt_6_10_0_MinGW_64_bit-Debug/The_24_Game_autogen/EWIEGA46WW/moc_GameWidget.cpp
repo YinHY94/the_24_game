@@ -1,12 +1,12 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'GameWidget.h'
+** Meta object code from reading C++ file 'gamewidget.h'
 **
 ** Created by: The Qt Meta Object Compiler version 69 (Qt 6.10.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../../GameWidget.h"
+#include "../../../../gamewidget.h"
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -16,7 +16,7 @@
 
 #include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'GameWidget.h' doesn't include <QObject>."
+#error "The header file 'gamewidget.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 69
 #error "This file was generated using the moc from 6.10.0. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -39,19 +39,19 @@ template <> constexpr inline auto GameWidget::qt_create_metaobjectdata<qt_meta_t
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
         "GameWidget",
-        "onStartGame",
+        "on_m_startBtn_clicked",
         "",
-        "onSubmitAnswer",
-        "onNextRound",
+        "on_m_submitBtn_clicked",
+        "on_m_nextBtn_clicked",
         "onTimerTick"
     };
 
     QtMocHelpers::UintData qt_methods {
-        // Slot 'onStartGame'
+        // Slot 'on_m_startBtn_clicked'
         QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onSubmitAnswer'
+        // Slot 'on_m_submitBtn_clicked'
         QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onNextRound'
+        // Slot 'on_m_nextBtn_clicked'
         QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onTimerTick'
         QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
@@ -78,9 +78,9 @@ void GameWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     auto *_t = static_cast<GameWidget *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->onStartGame(); break;
-        case 1: _t->onSubmitAnswer(); break;
-        case 2: _t->onNextRound(); break;
+        case 0: _t->on_m_startBtn_clicked(); break;
+        case 1: _t->on_m_submitBtn_clicked(); break;
+        case 2: _t->on_m_nextBtn_clicked(); break;
         case 3: _t->onTimerTick(); break;
         default: ;
         }
