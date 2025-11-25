@@ -1,17 +1,17 @@
 [
     {
+        "name": "1",
+        "password": "1",
+        "score": 248
+    },
+    {
         "name": "B24010424",
         "password": "123456",
         "score": 0
     },
     {
-        "name": "1",
-        "password": "1",
-        "score": 0
-    },
-    {
         "name": "唐朝",
         "password": "123456",
-        "score": 0
+        "score": 99
     }
 ]

@@ -5,6 +5,10 @@
 #include <QVector>
 #include <QString>
 
+
+class RankingDialog;
+
+
 class UserDatabase
 {
 public:
@@ -24,12 +28,16 @@ public:
 
     bool updateUserScore(const User& user);
 
+    void sort();
+
     // 获取所有用户（排行榜用）
     const QVector<User>& users() const { return m_users; }
 
 private:
     QVector<User> m_users;
     QString m_filename;
+
+    friend RankingDialog;
 };
 
 

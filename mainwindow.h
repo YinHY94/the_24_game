@@ -27,7 +27,7 @@ private slots:
     void on_logoutBtn_clicked();
     void on_registerBtn_clicked();
     void on_ruleBtn_clicked();
-    // void on_rankBtn_clicked();
+    void on_rankBtn_clicked();
 
 
 private:

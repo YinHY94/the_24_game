@@ -593,8 +593,11 @@ The_24_Game_autogen/timestamp: \
 	D:/Qt_Project/The_24_Game/main.cpp \
 	D:/Qt_Project/The_24_Game/mainwindow.cpp \
 	D:/Qt_Project/The_24_Game/mainwindow.h \
+	D:/Qt_Project/The_24_Game/rankingdialog.cpp \
+	D:/Qt_Project/The_24_Game/rankingdialog.h \
 	D:/Qt_Project/The_24_Game/user.h \
 	D:/Qt_Project/The_24_Game/difficultydialog.ui \
 	D:/Qt_Project/The_24_Game/gamewidget.ui \
 	D:/Qt_Project/The_24_Game/mainwindow.ui \
+	D:/Qt_Project/The_24_Game/rankingdialog.ui \
 	D:/Qt/Tools/CMake_64/bin/cmake.exe

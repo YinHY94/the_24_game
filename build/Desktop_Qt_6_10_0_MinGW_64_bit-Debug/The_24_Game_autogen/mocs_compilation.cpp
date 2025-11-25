@@ -5,3 +5,4 @@
 #include "EWIEGA46WW/moc_difficultydialog.cpp"
 #include "EWIEGA46WW/moc_gamewidget.cpp"
 #include "EWIEGA46WW/moc_mainwindow.cpp"
+#include "EWIEGA46WW/moc_rankingdialog.cpp"

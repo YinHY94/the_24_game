@@ -12,6 +12,7 @@ class QLineEdit;
 class QPushButton;
 class QComboBox;
 class QTimer;
+class UserDatabase;
 
 
 namespace Ui {
@@ -30,7 +31,7 @@ class GameWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit GameWidget(User currentUser,QWidget *parent = nullptr);
+    explicit GameWidget(UserDatabase& m_userDb,User currentUser,QWidget *parent = nullptr);
     ~GameWidget();
 
     /**
@@ -62,6 +63,7 @@ private:
     QTimer      *m_timer;         ///< 每秒计时器
 
     // ---------------- 游戏状态数据 ----------------
+    UserDatabase& m_userDatabase;
     User        m_currentUser;
     GameLogic   m_logic;
     QVector<int> m_numbers;       ///< 当前题目的4个数

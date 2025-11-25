@@ -36,6 +36,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         RuleDialog.h
         RuleDialog.cpp
         difficultydialog.h difficultydialog.cpp difficultydialog.ui
+        rankingdialog.h rankingdialog.cpp rankingdialog.ui
 
 
 

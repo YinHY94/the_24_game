@@ -32,6 +32,7 @@
 #include "RegisterDialog.h"
 #include "GameWidget.h"
 #include "RuleDialog.h"
+#include "rankingdialog.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -123,7 +124,7 @@ void MainWindow::updateUIAfterLogin()
     if (m_currentUser == nullptr) {
         return;
     }
-    m_gameWidget=new GameWidget(*m_currentUser,this);
+    m_gameWidget=new GameWidget(m_userDb,*m_currentUser,this);
     ui->stackedWidget->addWidget(m_gameWidget);
     ui->stackedWidget->setCurrentWidget(m_gameWidget);
     // 显示当前用户信息（如果有状态栏或标签）
@@ -196,11 +197,19 @@ void MainWindow::UserRegister()
 void MainWindow::on_ruleBtn_clicked(){
     RuleDialog dialog(this);
     if (dialog.exec() != QDialog::Accepted) {
-        return;  // 用户取消注册
+        return;
     }
 
 }
 
+
+void MainWindow::on_rankBtn_clicked(){
+    m_userDb.sort();
+    RankingDialog dialog(m_userDb,this);
+    if (dialog.exec() != QDialog::Accepted) {
+        return;
+    }
+}
 
 void MainWindow::on_loginBtn_clicked()
 {

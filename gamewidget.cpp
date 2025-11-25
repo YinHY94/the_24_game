@@ -1,4 +1,5 @@
 #include "gamewidget.h"
+#include "UserDatabase.h"
 #include "ui_gamewidget.h"
 
 #include <QLabel>
@@ -12,10 +13,12 @@
 #include <QRegularExpression>
 #include <QMessageBox>
 #include "difficultydialog.h"
+#include "rankingdialog.h"
 
-GameWidget::GameWidget(User currentUser, QWidget *parent) :
+GameWidget::GameWidget(UserDatabase& m_userDb,User currentUser, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::GameWidget),
+    m_userDatabase(m_userDb),
     m_currentUser(currentUser),
     m_logic(),
     m_timer(new QTimer(this)),
@@ -237,31 +240,28 @@ void GameWidget::onTimerTick()
 
 void GameWidget::finishRound(bool timeoutOrWrong)
 {
-    ui->m_startBtn->setText("开始游戏");
-
-    // 恢复原始青色样式
-    ui->m_startBtn->setStyleSheet(
-        "QPushButton {"
-        "   background-color: #00BCD4; color: #1E1E1E; "
-        "   border-radius: 6px; font-weight: bold; padding: 10px 20px;"
-        "}"
-        "QPushButton:hover { background-color: #00E5FF; }"
-        "QPushButton:pressed { background-color: #00A6B8; }"
-        );
     m_timer->stop();
     m_roundActive = false;
     ui->m_submitBtn->setEnabled(false);
-    ui->m_startBtn->show();
 
     // 如果是错误 NO 或者超时，整轮游戏直接结束
     if (timeoutOrWrong) {
         ui->m_nextBtn->setEnabled(false);
+        ui->m_startBtn->setText("开始游戏");
 
-        // // ★ 改用：更新排行榜（同一玩家只保留最高分）
-        // updateRecords(m_userName, m_totalScore);
-        // updateRankLabel();
-
-        //emit gameFinished(m_userName, m_totalScore);
+        // 恢复原始青色样式
+        ui->m_startBtn->setStyleSheet(
+            "QPushButton {"
+            "   background-color: #00BCD4; color: #1E1E1E; "
+            "   border-radius: 6px; font-weight: bold; padding: 10px 20px;"
+            "}"
+            "QPushButton:hover { background-color: #00E5FF; }"
+            "QPushButton:pressed { background-color: #00A6B8; }"
+            );
+        if (m_totalScore > m_currentUser.score){
+            m_currentUser.score=m_totalScore;
+        }
+        m_userDatabase.updateUserScore(m_currentUser);
     }
 
     // 正常结束一局（答对或正确 NO）
@@ -272,13 +272,28 @@ void GameWidget::finishRound(bool timeoutOrWrong)
         // // ★ 改用：更新排行榜（同一玩家只保留最高分）
         // updateRecords(m_userName, m_totalScore);
         // updateRankLabel();
+        ui->m_startBtn->setText("开始游戏");
+
+        // 恢复原始青色样式
+        ui->m_startBtn->setStyleSheet(
+            "QPushButton {"
+            "   background-color: #00BCD4; color: #1E1E1E; "
+            "   border-radius: 6px; font-weight: bold; padding: 10px 20px;"
+            "}"
+            "QPushButton:hover { background-color: #00E5FF; }"
+            "QPushButton:pressed { background-color: #00A6B8; }"
+            );
+
 
         ui->m_messageLabel->setText(
             tr("三局已全部完成！本局得分：%1，总分：%2。")
                 .arg(m_lastRoundScore)
                 .arg(m_totalScore)
             );
-
+        if (m_totalScore > m_currentUser.score){
+            m_currentUser.score=m_totalScore;
+        }
+        m_userDatabase.updateUserScore(m_currentUser);
         //emit gameFinished(m_userName, m_totalScore);
     } else {
         // 还可以继续下一局
@@ -301,7 +316,7 @@ void GameWidget::updateInfoLabels()
         QString("玩家：%1").arg(m_currentUser.name.isEmpty() ? QString("未登录") : m_currentUser.name)
         );
 
-    if (m_roundIndex == 0) {
+    if (m_roundActive==false) {
         ui->m_roundLabel->setText(QString("第 -- 局"));
     } else {
         ui->m_roundLabel->setText(

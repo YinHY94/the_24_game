@@ -4,6 +4,9 @@
 #include <QJsonArray>
 #include <QJsonObject>
 
+#include <algorithm>
+
+
 UserDatabase::UserDatabase()
 {
     m_filename = "users.json";
@@ -91,7 +94,7 @@ bool UserDatabase::addUser(const User& user)
 
 bool UserDatabase::updateUserScore(const User& user){
     for ( User& u :m_users) {
-        if (u.name == user.name) {
+        if (u.name == user.name && user.score>u.score) {
             u.score = user.score;
             saveToFile(m_filename);
             return true;
@@ -99,5 +102,12 @@ bool UserDatabase::updateUserScore(const User& user){
     }
     return false;
 
+}
+
+void UserDatabase::sort(){
+    std::sort(m_users.begin(),m_users.end(),
+              [](const User& a, const User& b){
+                return a.score > b.score;}
+              );
 }
 
