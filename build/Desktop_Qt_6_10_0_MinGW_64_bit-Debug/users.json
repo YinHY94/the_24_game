@@ -2,16 +2,21 @@
     {
         "name": "1",
         "password": "1",
-        "score": 248
+        "score": 249
     },
     {
-        "name": "B24010424",
-        "password": "123456",
-        "score": 0
+        "name": "零落山川",
+        "password": "111111",
+        "score": 100
     },
     {
         "name": "唐朝",
         "password": "123456",
         "score": 99
+    },
+    {
+        "name": "B24010424",
+        "password": "123456",
+        "score": 0
     }
 ]
