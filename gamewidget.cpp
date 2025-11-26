@@ -89,9 +89,9 @@ void GameWidget::resetGame()
 void GameWidget::startGame(){
     resetGame();
     chooseDifficulty();
+    m_hintUsed=false;
     startRound();
     m_gameActive=true;
-    m_hintUsed=false;
     // 【开始游戏】
     ui->m_startBtn->setText("结束游戏");
 
@@ -492,7 +492,7 @@ void GameWidget::chooseDifficulty(){
 
     }
     m_currentUser.click_time[m_difficulty]++;
-
+    m_userDatabase.updateUserData(m_currentUser);
 }
 
 

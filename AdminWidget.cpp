@@ -88,9 +88,9 @@ QHeaderView::section {
     headers << tr("用户名")
             << tr("累计游玩时间")
             << tr("登录次数")
-            << tr("简单难度游玩次数")
-            << tr("普通难度游玩次数")
-            << tr("困难难度游玩次数");
+            << tr("简单模式游玩次数")
+            << tr("正常模式游玩次数")
+            << tr("困难模式游玩次数");
     m_table->setHorizontalHeaderLabels(headers);
 
     // 表格常用配置

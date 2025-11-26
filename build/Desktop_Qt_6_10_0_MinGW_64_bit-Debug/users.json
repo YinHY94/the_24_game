@@ -1,14 +1,14 @@
 [
     {
-        "easy": 0,
-        "hard": 1,
+        "easy": 1,
+        "hard": 2,
         "name": "唐朝",
-        "normal": 0,
+        "normal": 1,
         "password": "123456",
         "role": "user",
         "score": 252,
-        "sessionCount": 2,
-        "totalUseSeconds": 93
+        "sessionCount": 6,
+        "totalUseSeconds": 1113
     },
     {
         "easy": 0,
@@ -18,8 +18,8 @@
         "password": "1",
         "role": "user",
         "score": 249,
-        "sessionCount": 2,
-        "totalUseSeconds": 0
+        "sessionCount": 9,
+        "totalUseSeconds": 88
     },
     {
         "easy": 0,
@@ -51,7 +51,7 @@
         "password": "123456",
         "role": "admin",
         "score": 0,
-        "sessionCount": 1,
+        "sessionCount": 2,
         "totalUseSeconds": 0
     }
 ]

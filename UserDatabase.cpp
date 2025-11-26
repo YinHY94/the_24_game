@@ -44,7 +44,7 @@ bool UserDatabase::loadFromFile(const QString& filename)
         user.score = obj["score"].toInt();
         user.role = obj["role"].toString();
         user.sessionCount    = obj["sessionCount"].toInt();
-        user.totalUseSeconds = obj ["totalseconds"].toInt();
+        user.totalUseSeconds = obj ["totalUseSeconds"].toInt();
         user.click_time[0] = obj ["easy"].toInt();
         user.click_time[1] = obj ["normal"].toInt();
         user.click_time[2] = obj ["hard"].toInt();
@@ -130,6 +130,19 @@ bool UserDatabase::addUsageTime(const QString& name, int seconds)
     return false;
 }
 
+
+bool UserDatabase::updateUserData(const User& user){
+    for (User& u : m_users){
+        if (u.name == user.name){
+            u.click_time[0]=user.click_time[0];
+            u.click_time[1]=user.click_time[1];
+            u.click_time[2]=user.click_time[2];
+            saveToFile(m_filename);
+            return true;
+        }
+    }
+    return false;
+}
 
 void UserDatabase::sort(){
     std::sort(m_users.begin(),m_users.end(),
