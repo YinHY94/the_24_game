@@ -39,6 +39,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         rankingdialog.h rankingdialog.cpp rankingdialog.ui
         SoundManager.h
         SoundManager.cpp
+        AdminWidget.h
+        AdminWidget.cpp
 
 
 

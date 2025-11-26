@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../../../The_24_Game_1/SoundManager.h"
+#include "../../../../SoundManager.h"
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>

@@ -27,6 +27,7 @@
 #include <QPixmap>
 #include <QCoreApplication>
 #include <QDir>
+#include <QCloseEvent>
 
 #include "LoginDialog.h"
 #include "RegisterDialog.h"
@@ -34,6 +35,7 @@
 #include "RuleDialog.h"
 #include "rankingdialog.h"
 #include "SoundManager.h"
+#include "AdminWidget.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -86,8 +88,21 @@ void MainWindow::UserLogin()
     if (user) {
         // 登录成功
         m_currentUser = user;
-        QMessageBox::information(this, "登录成功",
-                                 QString("欢迎回来，%1！当前最高得分：%2").arg(user->name).arg(user->score));
+
+        if (user->isAdmin()==false){
+            m_loginTime = QDateTime::currentDateTime();
+            QMessageBox::information(this, "登录成功",
+                                     QString("欢迎回来，%1！\n\r当前最高得分：%2\n\r已玩时长：%3小时 %4 分钟")
+                                         .arg(user->name)
+                                         .arg(user->score)
+                                         .arg(user->totalUseSeconds/3600)
+                                         .arg((user->totalUseSeconds/60)%60)
+                                     );
+        }
+        else{
+            QMessageBox::information(this, "登录成功",
+                                     QString("欢迎回来，%1！\n\r").arg(user->name));
+        }
 
         // 更新界面状态
         ui->logoutBtn->setVisible(true);
@@ -105,16 +120,32 @@ void MainWindow::UserLogin()
    ------------------------------------------------------------- */
 void MainWindow::UserLogout()
 {
+    if (m_currentUser->isAdmin()==false) {
+        QDateTime now = QDateTime::currentDateTime();
+        int secs = m_loginTime.secsTo(now); // 本次登录时长（秒）
+        if (secs > 0) {
+            m_userDb.addUsageTime(m_currentUser->name, secs);
+        }
+    }
+
     m_currentUser = nullptr;
     ui->logoutBtn->setVisible(false);
     initializeUI();
     ui->stackedWidget->setCurrentWidget(ui->pageWelcome);
 
     if(m_gameWidget!=nullptr){
+        ui->stackedWidget->removeWidget(m_gameWidget);
         delete m_gameWidget;
         m_gameWidget=nullptr;
     }
+    else if(m_adminWidget!=nullptr){
+        ui->stackedWidget->removeWidget(m_adminWidget);
+        delete m_adminWidget;
+        m_adminWidget=nullptr;
+    }
+
     QMessageBox::information(this, "登出成功", "您已退出登录");
+    SoundManager::instance().playLoginBgm();
 }
 
 /* -------------------------------------------------------------
@@ -125,9 +156,18 @@ void MainWindow::updateUIAfterLogin()
     if (m_currentUser == nullptr) {
         return;
     }
-    m_gameWidget=new GameWidget(m_userDb,*m_currentUser,this);
-    ui->stackedWidget->addWidget(m_gameWidget);
-    ui->stackedWidget->setCurrentWidget(m_gameWidget);
+    else if (m_currentUser->isAdmin()==false){
+        m_gameWidget=new GameWidget(m_userDb,*m_currentUser,this);
+        ui->stackedWidget->addWidget(m_gameWidget);
+        ui->stackedWidget->setCurrentWidget(m_gameWidget);
+    }
+    else{
+        m_adminWidget=new AdminWidget(m_userDb,*m_currentUser,this);
+        ui->stackedWidget->addWidget(m_adminWidget);
+        ui->stackedWidget->setCurrentWidget(m_adminWidget);
+
+
+    }
     // 显示当前用户信息（如果有状态栏或标签）
     // ui->statusBarLabel->setText(QString("已登录：%1").arg(m_currentUser->name));
     SoundManager::instance().playMenuBgm();
@@ -211,18 +251,18 @@ void MainWindow::on_rankBtn_clicked(){
         SoundManager::instance().playRankBgm();
         RankingDialog dialog(m_userDb,this);
         if (dialog.exec() != QDialog::Accepted) {
+            SoundManager::instance().playLoginBgm();
             return;
         }
-        SoundManager::instance().playLoginBgm();
     }
     else if(m_gameWidget->m_gameActive==false){
         m_userDb.sort();
         SoundManager::instance().playRankBgm();
         RankingDialog dialog(m_userDb,this);
         if (dialog.exec() != QDialog::Accepted) {
+            SoundManager::instance().playMenuBgm();
             return;
         }
-        SoundManager::instance().playMenuBgm();
     }
 
 }
@@ -244,4 +284,15 @@ void MainWindow::on_registerBtn_clicked()
     UserRegister();
 }
 
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (m_currentUser) {
+        QDateTime now = QDateTime::currentDateTime();
+        int secs = m_loginTime.secsTo(now);
+        if (secs > 0) {
+            m_userDb.addUsageTime(m_currentUser->name, secs);
+        }
+    }
 
+    QMainWindow::closeEvent(event);
+}

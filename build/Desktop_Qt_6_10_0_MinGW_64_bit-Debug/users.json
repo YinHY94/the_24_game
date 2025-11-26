@@ -1,22 +1,57 @@
 [
     {
-        "name": "1",
-        "password": "1",
-        "score": 249
-    },
-    {
-        "name": "零落山川",
-        "password": "111111",
-        "score": 100
-    },
-    {
+        "easy": 0,
+        "hard": 1,
         "name": "唐朝",
+        "normal": 0,
         "password": "123456",
-        "score": 99
+        "role": "user",
+        "score": 252,
+        "sessionCount": 2,
+        "totalUseSeconds": 93
     },
     {
+        "easy": 0,
+        "hard": 1,
+        "name": "1",
+        "normal": 0,
+        "password": "1",
+        "role": "user",
+        "score": 249,
+        "sessionCount": 2,
+        "totalUseSeconds": 0
+    },
+    {
+        "easy": 0,
+        "hard": 1,
+        "name": "零落山川",
+        "normal": 0,
+        "password": "111111",
+        "role": "user",
+        "score": 100,
+        "sessionCount": 1,
+        "totalUseSeconds": 0
+    },
+    {
+        "easy": 0,
+        "hard": 1,
         "name": "B24010424",
+        "normal": 0,
         "password": "123456",
-        "score": 0
+        "role": "user",
+        "score": 0,
+        "sessionCount": 0,
+        "totalUseSeconds": 0
+    },
+    {
+        "easy": 0,
+        "hard": 0,
+        "name": "admin",
+        "normal": 0,
+        "password": "123456",
+        "role": "admin",
+        "score": 0,
+        "sessionCount": 1,
+        "totalUseSeconds": 0
     }
 ]

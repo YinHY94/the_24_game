@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QStackedWidget>
 #include <QPushButton>
+#include <QDateTime>
 #include "UserDatabase.h"
 
 QT_BEGIN_NAMESPACE
@@ -13,6 +14,7 @@ class MainWindow;
 QT_END_NAMESPACE
 
 class GameWidget;
+class AdminWidget;
 
 class MainWindow : public QMainWindow
 {
@@ -37,6 +39,8 @@ private:
     const User* m_currentUser = nullptr;  // 当前登录用户
     QStackedWidget* stackedWidget;
     GameWidget *m_gameWidget = nullptr;
+    AdminWidget *m_adminWidget=nullptr;
+    QDateTime m_loginTime;
 
 
     void initializeUI();
@@ -47,6 +51,9 @@ private:
     void loadUserDatabase();
     bool verifyUserLogin(const QString& account, const QString& password);
 
+protected:
+    // 程序关闭时也统计一次使用时长
+    void closeEvent(QCloseEvent *event) override;
 
 
 };

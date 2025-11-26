@@ -1,5 +1,6 @@
 D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/The_24_Game_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/Qt_Project/The_24_Game/mainwindow.h \
   D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/The_24_Game_autogen/moc_predefs.h \
+  D:/Qt/6.10.0/mingw_64/include/QtCore/QDateTime \
   D:/Qt/6.10.0/mingw_64/include/QtCore/QString \
   D:/Qt/6.10.0/mingw_64/include/QtCore/QVector \
   D:/Qt/6.10.0/mingw_64/include/QtCore/q17memory.h \
@@ -24,6 +25,7 @@ D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/The_24_Game
   D:/Qt/6.10.0/mingw_64/include/QtCore/qbytearrayalgorithms.h \
   D:/Qt/6.10.0/mingw_64/include/QtCore/qbytearraylist.h \
   D:/Qt/6.10.0/mingw_64/include/QtCore/qbytearrayview.h \
+  D:/Qt/6.10.0/mingw_64/include/QtCore/qcalendar.h \
   D:/Qt/6.10.0/mingw_64/include/QtCore/qchar.h \
   D:/Qt/6.10.0/mingw_64/include/QtCore/qcheckedint_impl.h \
   D:/Qt/6.10.0/mingw_64/include/QtCore/qcompare.h \
@@ -38,6 +40,7 @@ D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/The_24_Game
   D:/Qt/6.10.0/mingw_64/include/QtCore/qcontiguouscache.h \
   D:/Qt/6.10.0/mingw_64/include/QtCore/qdarwinhelpers.h \
   D:/Qt/6.10.0/mingw_64/include/QtCore/qdatastream.h \
+  D:/Qt/6.10.0/mingw_64/include/QtCore/qdatetime.h \
   D:/Qt/6.10.0/mingw_64/include/QtCore/qdebug.h \
   D:/Qt/6.10.0/mingw_64/include/QtCore/qendian.h \
   D:/Qt/6.10.0/mingw_64/include/QtCore/qexceptionhandling.h \
@@ -57,6 +60,7 @@ D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/The_24_Game
   D:/Qt/6.10.0/mingw_64/include/QtCore/qlatin1stringview.h \
   D:/Qt/6.10.0/mingw_64/include/QtCore/qline.h \
   D:/Qt/6.10.0/mingw_64/include/QtCore/qlist.h \
+  D:/Qt/6.10.0/mingw_64/include/QtCore/qlocale.h \
   D:/Qt/6.10.0/mingw_64/include/QtCore/qlogging.h \
   D:/Qt/6.10.0/mingw_64/include/QtCore/qmalloc.h \
   D:/Qt/6.10.0/mingw_64/include/QtCore/qmap.h \

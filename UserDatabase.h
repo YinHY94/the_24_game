@@ -30,6 +30,8 @@ public:
 
     void sort();
 
+    bool addUsageTime(const QString& name, int seconds);
+
     // 获取所有用户（排行榜用）
     const QVector<User>& users() const { return m_users; }
 

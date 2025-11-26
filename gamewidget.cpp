@@ -58,10 +58,12 @@ void GameWidget::resetGame()
     m_lastRoundScore  = 0;
 
     ui->m_exprEdit->clear();
+    ui->m_exprEdit->setEnabled(m_roundActive);
     m_timer->stop();
 
     ui->m_submitBtn->setEnabled(false);
     ui->m_nextBtn->setEnabled(false);
+    ui->m_hintBtn->setEnabled(false);
 
     ui->m_messageLabel->setText(QString("点击“开始游戏”开始第一局。"));
     updateCardsOnUI();
@@ -89,6 +91,7 @@ void GameWidget::startGame(){
     chooseDifficulty();
     startRound();
     m_gameActive=true;
+    m_hintUsed=false;
     // 【开始游戏】
     ui->m_startBtn->setText("结束游戏");
 
@@ -132,9 +135,13 @@ void GameWidget::startRound()
     m_solvable = m_logic.isSolvable(m_numbers);  // 预先判断是否可算出24
 
     m_roundActive = true;
+    ui->m_exprEdit->setEnabled(m_roundActive);
     m_elapsed = 0;
 
     ui->m_submitBtn->setEnabled(true);
+    if (!m_hintUsed){
+        ui->m_hintBtn->setEnabled(true);
+    }
     ui->m_nextBtn->setEnabled(false);
 
     updateCardsOnUI();
@@ -172,6 +179,7 @@ void GameWidget::on_m_submitBtn_clicked()
                     .arg(m_totalScore)
                 );
             finishRound(false);
+
         } else {
             // 判断错误：本来可以算出24，却说 NO —— 给出一个示例解法
             QString solution=m_logic.getSolution(m_numbers);
@@ -247,7 +255,9 @@ void GameWidget::finishRound(bool timeoutOrWrong)
 {
     m_timer->stop();
     m_roundActive = false;
+    ui->m_exprEdit->setEnabled(m_roundActive);
     ui->m_submitBtn->setEnabled(false);
+    ui->m_hintBtn->setEnabled(false);
 
     // 如果是错误 NO 或者超时，整轮游戏直接结束
     if (timeoutOrWrong) {
@@ -269,6 +279,7 @@ void GameWidget::finishRound(bool timeoutOrWrong)
         m_userDatabase.updateUserScore(m_currentUser);
         SoundManager::instance().playFailSfx();
         SoundManager::instance().playMenuBgm();
+
 
     }
 
@@ -320,6 +331,7 @@ void GameWidget::finishRound(bool timeoutOrWrong)
     m_numbers.clear();
     updateCardsOnUI();
     updateInfoLabels();
+    ui->m_exprEdit->clear();
 }
 
 void GameWidget::updateInfoLabels()
@@ -454,6 +466,8 @@ int GameWidget::calcRoundScore() const
 
     // 4. 最终得分：基础满分-时间用时*比例
     int score = static_cast<int>((baseScore - t * ratio) * difficultyMul + 0.5); // 四舍五入
+
+
     if (score < 0) score = 0;
     return score;
 }
@@ -477,17 +491,67 @@ void GameWidget::chooseDifficulty(){
             break;
 
     }
+    m_currentUser.click_time[m_difficulty]++;
 
 }
 
 
 void GameWidget::on_m_hintBtn_clicked(){
-    if (!m_hintUsed){
-
-
-
-
+    // 1. 非答题状态下不处理
+    if (!m_roundActive) {
+        return;
     }
+
+    // 2. 已经用过提示（理论上按钮已经禁用，这里双保险）
+    if (m_hintUsed) {
+        ui->m_messageLabel->setText(tr("本轮已经使用过提示，无法再次使用。"));
+        ui->m_hintBtn->setEnabled(false);
+        return;
+    }
+
+    // 3. 标记为本轮已使用提示，并禁用按钮
+    m_hintUsed = true;
+    ui->m_hintBtn->setEnabled(false);
+
+    // 4. 根据当前题目是否可解，执行不同的提示策略
+    if (m_solvable) {
+        // ---------- 情况一：本题可算出 24，给出“挖去数字”的算式 ----------
+        QString solution = m_logic.getSolution(m_numbers);  // 完整解法表达式
+
+        if (solution.isEmpty()) {
+            // 理论上不会为空，防御性处理
+            ui->m_messageLabel->setText(tr("提示：本题可以算出 24，但暂时无法提供具体解法，请继续尝试。"));
+            return;
+        }
+
+        // 挖去数字：所有数字字符用下划线代替，只保留运算符和括号
+        QString hintExpr = solution;
+        QRegularExpression digitRe("\\d");   // 每一个数字字符
+        hintExpr.replace(digitRe, "_");
+
+        // 把“模板表达式”放入输入框，方便玩家在此基础上填数字
+        ui->m_exprEdit->setText(hintExpr);
+
+        ui->m_messageLabel->setText(
+            tr("提示：本题可以算出 24，其中一种算式是：%1\n"
+               "(下划线表示被挖去的数字，请你根据当前四张牌自行填入。)")
+                .arg(hintExpr)
+            );
+    } else {
+        // ---------- 情况二：本题无解，直接帮玩家换一组牌 ----------
+        ui->m_messageLabel->setText(
+            tr("提示：当前这组牌无法算出 24，已为你更换一组新牌，请继续作答。")
+            );
+
+        // 重新生成一组新题，但仍算同一局，时间继续走
+        m_numbers   = m_logic.generateNumbers();
+        m_solvable  = m_logic.isSolvable(m_numbers);
+        m_elapsed = 0;
+        ui->m_exprEdit->clear();
+        updateCardsOnUI();
+        updateInfoLabels();
+    }
+
 }
 
 

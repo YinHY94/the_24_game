@@ -383,6 +383,12 @@
 	"HEADERS" : 
 	[
 		[
+			"D:/Qt_Project/The_24_Game/AdminWidget.h",
+			"MU",
+			"EWIEGA46WW/moc_AdminWidget.cpp",
+			null
+		],
+		[
 			"D:/Qt_Project/The_24_Game/LoginDialog.h",
 			"MU",
 			"EWIEGA46WW/moc_LoginDialog.cpp",
@@ -524,6 +530,7 @@
 	"SETTINGS_FILE" : "D:/Qt_Project/The_24_Game/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug/CMakeFiles/The_24_Game_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "D:/Qt_Project/The_24_Game/AdminWidget.cpp", "MU", null ],
 		[ "D:/Qt_Project/The_24_Game/LoginDialog.cpp", "MU", null ],
 		[ "D:/Qt_Project/The_24_Game/RegisterDialog.cpp", "MU", null ],
 		[ "D:/Qt_Project/The_24_Game/RuleDialog.cpp", "MU", null ],
