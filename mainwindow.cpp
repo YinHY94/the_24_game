@@ -33,7 +33,7 @@
 #include "GameWidget.h"
 #include "RuleDialog.h"
 #include "rankingdialog.h"
-
+#include "SoundManager.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
 
-
+    SoundManager::instance().playLoginBgm();
     initializeUI();
 }
 
@@ -112,6 +112,7 @@ void MainWindow::UserLogout()
 
     if(m_gameWidget!=nullptr){
         delete m_gameWidget;
+        m_gameWidget=nullptr;
     }
     QMessageBox::information(this, "登出成功", "您已退出登录");
 }
@@ -129,7 +130,7 @@ void MainWindow::updateUIAfterLogin()
     ui->stackedWidget->setCurrentWidget(m_gameWidget);
     // 显示当前用户信息（如果有状态栏或标签）
     // ui->statusBarLabel->setText(QString("已登录：%1").arg(m_currentUser->name));
-
+    SoundManager::instance().playMenuBgm();
 }
 
 /* -------------------------------------------------------------
@@ -204,11 +205,26 @@ void MainWindow::on_ruleBtn_clicked(){
 
 
 void MainWindow::on_rankBtn_clicked(){
-    m_userDb.sort();
-    RankingDialog dialog(m_userDb,this);
-    if (dialog.exec() != QDialog::Accepted) {
-        return;
+
+    if(m_gameWidget==nullptr){
+        m_userDb.sort();
+        SoundManager::instance().playRankBgm();
+        RankingDialog dialog(m_userDb,this);
+        if (dialog.exec() != QDialog::Accepted) {
+            return;
+        }
+        SoundManager::instance().playLoginBgm();
     }
+    else if(m_gameWidget->m_gameActive==false){
+        m_userDb.sort();
+        SoundManager::instance().playRankBgm();
+        RankingDialog dialog(m_userDb,this);
+        if (dialog.exec() != QDialog::Accepted) {
+            return;
+        }
+        SoundManager::instance().playMenuBgm();
+    }
+
 }
 
 void MainWindow::on_loginBtn_clicked()

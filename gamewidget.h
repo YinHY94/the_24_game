@@ -34,6 +34,9 @@ public:
     explicit GameWidget(UserDatabase& m_userDb,User currentUser,QWidget *parent = nullptr);
     ~GameWidget();
 
+
+    bool        m_gameActive;
+
     /**
      * @brief 设置当前登录玩家名称（从登录界面传进来）
      * @param name 玩家名字
@@ -42,6 +45,8 @@ public:
 
     /// 退出登录时调用：停止当前游戏并重置为未登录状态
     void resetForLogout();
+
+
 
 private slots:
     /// 点击“开始游戏”按钮
@@ -52,6 +57,8 @@ private slots:
 
     /// 点击“下一题”按钮
     void on_m_nextBtn_clicked();
+
+    void on_m_hintBtn_clicked();
 
     /// 计时器每秒触发一次
     void onTimerTick();
@@ -70,6 +77,7 @@ private:
     Difficulty   m_difficulty;
     bool        m_roundActive;    ///< 当前是否处于答题中
     bool        m_solvable;       ///< 当前4个数是否能算出24
+    bool        m_hintUsed;
     int         m_timeLimit;      ///< 当前题目的时间上限（秒）
     int         m_elapsed;        ///< 已用时间（秒）
     int         m_roundIndex;     ///< 当前是第几局（1~3），0表示还没开始

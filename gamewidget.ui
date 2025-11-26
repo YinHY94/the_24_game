@@ -52,7 +52,6 @@ QPushButton:hover:!disabled {
 QPushButton:pressed:!disabled {
     background-color: #00A6B8; /* 按下时的深青色 */
 }
-
    </string>
   </property>
   <layout class="QVBoxLayout" name="mainLayout">
@@ -352,7 +351,7 @@ QPushButton:pressed:!disabled {
      <item>
       <widget class="QLineEdit" name="m_exprEdit">
        <property name="placeholderText">
-        <string>例如：(3+5)*2+4</string>
+        <string>例如：(3+5)*2+8</string>
        </property>
       </widget>
      </item>
@@ -426,6 +425,22 @@ QPushButton:pressed:!disabled {
        </property>
        <property name="text">
         <string>下一局</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="m_hintBtn">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>120</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>提示</string>
        </property>
       </widget>
      </item>

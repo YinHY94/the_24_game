@@ -14,6 +14,7 @@
 #include <QMessageBox>
 #include "difficultydialog.h"
 #include "rankingdialog.h"
+#include "SoundManager.h"
 
 GameWidget::GameWidget(UserDatabase& m_userDb,User currentUser, QWidget *parent) :
     QWidget(parent),
@@ -23,7 +24,9 @@ GameWidget::GameWidget(UserDatabase& m_userDb,User currentUser, QWidget *parent)
     m_logic(),
     m_timer(new QTimer(this)),
     m_roundActive(false),
+    m_gameActive(false),
     m_solvable(false),
+    m_hintUsed(false),
     m_timeLimit(60),
     m_elapsed(0),
     m_roundIndex(0),
@@ -85,6 +88,7 @@ void GameWidget::startGame(){
     resetGame();
     chooseDifficulty();
     startRound();
+    m_gameActive=true;
     // 【开始游戏】
     ui->m_startBtn->setText("结束游戏");
 
@@ -104,11 +108,12 @@ void GameWidget::on_m_startBtn_clicked()
 {
 
 
-    if (!m_roundActive) {
+    if (!m_gameActive ) {
         // 每次开始游戏，相当于重新开一轮三局
         startGame();
     } else {
         finishRound(true);
+        ui->m_messageLabel->setText(QString("游戏结束，点击“开始游戏”开始新一局。"));
     }
 
 }
@@ -248,7 +253,7 @@ void GameWidget::finishRound(bool timeoutOrWrong)
     if (timeoutOrWrong) {
         ui->m_nextBtn->setEnabled(false);
         ui->m_startBtn->setText("开始游戏");
-
+        m_gameActive=false;
         // 恢复原始青色样式
         ui->m_startBtn->setStyleSheet(
             "QPushButton {"
@@ -262,13 +267,16 @@ void GameWidget::finishRound(bool timeoutOrWrong)
             m_currentUser.score=m_totalScore;
         }
         m_userDatabase.updateUserScore(m_currentUser);
+        SoundManager::instance().playFailSfx();
+        SoundManager::instance().playMenuBgm();
+
     }
 
     // 正常结束一局（答对或正确 NO）
     else if (m_roundIndex >= 3) {
         // 三局全部完成，本轮结束
         ui->m_nextBtn->setEnabled(false);
-
+        m_gameActive=false;
         // // ★ 改用：更新排行榜（同一玩家只保留最高分）
         // updateRecords(m_userName, m_totalScore);
         // updateRankLabel();
@@ -294,16 +302,20 @@ void GameWidget::finishRound(bool timeoutOrWrong)
             m_currentUser.score=m_totalScore;
         }
         m_userDatabase.updateUserScore(m_currentUser);
-        //emit gameFinished(m_userName, m_totalScore);
+
+        SoundManager::instance().playStageClearSfx();
+        SoundManager::instance().playMenuBgm();
+
     } else {
         // 还可以继续下一局
         ui->m_nextBtn->setEnabled(true);
         ui->m_messageLabel->setText(
-            tr("第 %1 局回答正确，本局得分：%2，总分：%3。点击“下一题”继续。")
+            tr("第 %1 局回答正确，本局得分：%2，总分：%3。点击“下一局”继续。")
                 .arg(m_roundIndex)
                 .arg(m_lastRoundScore)
                 .arg(m_totalScore)
             );
+        SoundManager::instance().playCorrectSfx();
     }
     m_numbers.clear();
     updateCardsOnUI();
@@ -336,6 +348,8 @@ void GameWidget::updateInfoLabels()
             QString("剩余时间：%1 秒").arg(remain)
             );
     }
+
+
     ui->m_scoreLabel->setText(
         QString("总分：%1").arg(m_totalScore)
         );
@@ -398,51 +412,7 @@ void GameWidget::updateCardsOnUI()
     }
 }
 
-// void GameWidget::updateRankLabel()
-// {
-//     QString text = tr("高手排行榜（本次运行前3名）：\n");
-//     int top = std::min(3, static_cast<int>(m_records.size()));
-//     for (int i = 0; i < top; ++i) {
-//         text += tr("%1. %2  ——  %3 分\n")
-//                     .arg(i + 1)
-//                     .arg(m_records[i].name)
-//                     .arg(m_records[i].score);
-//     }
-//     if (top == 0) {
-//         text += tr("暂无记录");
-//     }
-//     m_rankLabel->setText(text);
-// }
 
-// void GameWidget::updateRecords(const QString &name, int score)
-// {
-//     // 统一一下名字，避免空名乱入
-//     QString key = name.isEmpty() ? tr("匿名玩家") : name;
-
-//     bool found = false;
-//     for (Record &r : m_records) {
-//         if (r.name == key) {
-//             found = true;
-//             // 同一玩家只保留最高分
-//             if (score > r.score) {
-//                 r.score = score;
-//             }
-//             break;
-//         }
-//     }
-
-//     // 如果排行榜里还没有这个玩家，就追加一条
-//     if (!found) {
-//         Record rec{ key, score };
-//         m_records.append(rec);
-//     }
-
-//     // 重新按分数从高到低排序
-//     std::sort(m_records.begin(), m_records.end(),
-//               [](const Record &a, const Record &b){
-//                   return a.score > b.score;
-//               });
-// }
 
 int GameWidget::calcRoundScore() const
 {
@@ -494,7 +464,7 @@ void GameWidget::chooseDifficulty(){
     if (dialog.exec() != QDialog::Accepted) {
         return;
     }
-
+    SoundManager::instance().playGameBgm(m_difficulty);
     switch (m_difficulty){
         case Easy:
             m_timeLimit=90;
@@ -509,4 +479,15 @@ void GameWidget::chooseDifficulty(){
     }
 
 }
+
+
+void GameWidget::on_m_hintBtn_clicked(){
+    if (!m_hintUsed){
+
+
+
+
+    }
+}
+
 

@@ -48,6 +48,7 @@ public:
     QPushButton *m_startBtn;
     QPushButton *m_submitBtn;
     QPushButton *m_nextBtn;
+    QPushButton *m_hintBtn;
     QSpacerItem *horizontalSpacer_5;
     QSpacerItem *verticalSpacer;
 
@@ -95,7 +96,6 @@ public:
 "QPushButton:pressed:!disabled {\n"
 "    background-color: #00A6B8; /* \346\214\211\344\270\213\346\227\266\347\232\204\346\267\261\351\235\222\350\211\262 */\n"
 "}\n"
-"\n"
 "   "));
         mainLayout = new QVBoxLayout(GameWidget);
         mainLayout->setSpacing(20);
@@ -295,6 +295,13 @@ public:
 
         btnLayout->addWidget(m_nextBtn);
 
+        m_hintBtn = new QPushButton(GameWidget);
+        m_hintBtn->setObjectName("m_hintBtn");
+        m_hintBtn->setEnabled(false);
+        m_hintBtn->setMinimumSize(QSize(120, 40));
+
+        btnLayout->addWidget(m_hintBtn);
+
         horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         btnLayout->addItem(horizontalSpacer_5);
@@ -324,11 +331,12 @@ public:
         m_cardLabels_2->setText(QString());
         m_cardLabels_3->setText(QString());
         exprTipLabel->setText(QCoreApplication::translate("GameWidget", "\350\257\267\350\276\223\345\205\245\350\256\241\347\256\227\350\241\250\350\276\276\345\274\217\357\274\210\346\210\226\350\276\223\345\205\245 NO \346\224\276\345\274\203\357\274\211\357\274\232", nullptr));
-        m_exprEdit->setPlaceholderText(QCoreApplication::translate("GameWidget", "\344\276\213\345\246\202\357\274\232(3+5)*2+4", nullptr));
+        m_exprEdit->setPlaceholderText(QCoreApplication::translate("GameWidget", "\344\276\213\345\246\202\357\274\232(3+5)*2+8", nullptr));
         m_messageLabel->setText(QCoreApplication::translate("GameWidget", "TextLabel", nullptr));
         m_startBtn->setText(QCoreApplication::translate("GameWidget", "\345\274\200\345\247\213\346\270\270\346\210\217", nullptr));
         m_submitBtn->setText(QCoreApplication::translate("GameWidget", "\346\217\220\344\272\244\347\255\224\346\241\210", nullptr));
         m_nextBtn->setText(QCoreApplication::translate("GameWidget", "\344\270\213\344\270\200\345\261\200", nullptr));
+        m_hintBtn->setText(QCoreApplication::translate("GameWidget", "\346\217\220\347\244\272", nullptr));
     } // retranslateUi
 
 };
