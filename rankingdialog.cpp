@@ -14,8 +14,23 @@ RankingDialog::RankingDialog(const UserDatabase& database,QWidget *parent)
 
     size_t limit = std::min<size_t>(3, m_userdatabase.m_users.size());
 
-    for (size_t i = 0; i < limit; ++i) {
-        ui->labelRank1->setText(QString("NO%1. %2  %3分").arg(i).arg(m_userdatabase.m_users.at(0).name).arg(m_userdatabase.m_users.at(0).score));
+    switch (limit) {
+    case 0:
+        break;
+    case 1:
+        ui->labelRank1->setText(QString("NO1. %1  %2分").arg(m_userdatabase.m_users.at(0).name).arg(m_userdatabase.m_users.at(0).score));
+        break;
+    case 2:
+        ui->labelRank1->setText(QString("NO1. %1  %2分").arg(m_userdatabase.m_users.at(0).name).arg(m_userdatabase.m_users.at(0).score));
+        ui->labelRank2->setText(QString("NO2. %1  %2分").arg(m_userdatabase.m_users.at(1).name).arg(m_userdatabase.m_users.at(1).score));
+        break;
+    case 3:
+        ui->labelRank1->setText(QString("NO1. %1  %2分").arg(m_userdatabase.m_users.at(0).name).arg(m_userdatabase.m_users.at(0).score));
+        ui->labelRank2->setText(QString("NO2. %1  %2分").arg(m_userdatabase.m_users.at(1).name).arg(m_userdatabase.m_users.at(1).score));
+        ui->labelRank3->setText(QString("NO3. %1  %2分").arg(m_userdatabase.m_users.at(2).name).arg(m_userdatabase.m_users.at(2).score));
+        break;
+    default:
+        break;
     }
 
 }
