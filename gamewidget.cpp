@@ -552,6 +552,9 @@ void GameWidget::on_m_hintBtn_clicked(){
         updateInfoLabels();
     }
 
+    // 5.播放提示音效
+    SoundManager::instance().playHintSfx();
+
 }
 
 

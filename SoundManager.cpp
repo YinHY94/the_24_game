@@ -58,6 +58,7 @@ void SoundManager::initPaths()
     m_correctSfxPath     = dir + "/correct.mp3";
     m_stageClearSfxPath  = dir + "/stage_clear.mp3";
     m_failSfxPath        = dir + "/fail.mp3";
+    m_hintSfxPath        = dir + "/hint.mp3";
 
 #ifdef QT_DEBUG
     auto checkFile = [](const QString &path, const char *name) {
@@ -75,6 +76,7 @@ void SoundManager::initPaths()
     checkFile(m_correctSfxPath,    "correct_sfx");
     checkFile(m_stageClearSfxPath, "stage_clear_sfx");
     checkFile(m_failSfxPath,       "fail_sfx");
+    checkFile(m_hintSfxPath,       "hint_sfx");
 #endif
 }
 
@@ -168,3 +170,7 @@ void SoundManager::playFailSfx()
     playSfx(m_failSfxPath);
 }
 
+void SoundManager::playHintSfx()
+{
+    playSfx(m_hintSfxPath);
+}

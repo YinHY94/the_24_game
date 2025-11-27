@@ -7,8 +7,8 @@
         "password": "123456",
         "role": "user",
         "score": 252,
-        "sessionCount": 6,
-        "totalUseSeconds": 1113
+        "sessionCount": 7,
+        "totalUseSeconds": 1125
     },
     {
         "easy": 0,
@@ -18,19 +18,19 @@
         "password": "1",
         "role": "user",
         "score": 249,
-        "sessionCount": 9,
-        "totalUseSeconds": 88
+        "sessionCount": 10,
+        "totalUseSeconds": 94
     },
     {
-        "easy": 0,
-        "hard": 1,
+        "easy": 1,
+        "hard": 2,
         "name": "零落山川",
-        "normal": 0,
+        "normal": 1,
         "password": "111111",
         "role": "user",
         "score": 100,
-        "sessionCount": 1,
-        "totalUseSeconds": 0
+        "sessionCount": 3,
+        "totalUseSeconds": 30
     },
     {
         "easy": 0,

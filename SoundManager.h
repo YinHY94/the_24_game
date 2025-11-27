@@ -27,7 +27,7 @@ public:
     /// difficultyLevel: 0 = Easy, 1 = Normal, 2 = Hard
     void playGameBgm(Difficulty difficultyLevel);
 
-    /// 排行榜 BGM（预留，将来可用）
+    /// 排行榜 BGM
     void playRankBgm();
 
     /// 停止当前 BGM
@@ -41,6 +41,9 @@ public:
 
     /// 答错 / 超时 / 主动结束 的失败音效
     void playFailSfx();
+
+    /// 使用提示音效
+    void playHintSfx();
 
 private:
     explicit SoundManager(QObject *parent = nullptr);
@@ -71,6 +74,7 @@ private:
     QString m_correctSfxPath;
     QString m_stageClearSfxPath;
     QString m_failSfxPath;
+    QString m_hintSfxPath;
 };
 
 

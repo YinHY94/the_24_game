@@ -247,7 +247,7 @@ void MainWindow::on_ruleBtn_clicked(){
 void MainWindow::on_rankBtn_clicked(){
 
     if(m_gameWidget==nullptr){
-        m_userDb.sort();
+        //m_userDb.sort();
         SoundManager::instance().playRankBgm();
         RankingDialog dialog(m_userDb,this);
         if (dialog.exec() != QDialog::Accepted) {
@@ -259,7 +259,7 @@ void MainWindow::on_rankBtn_clicked(){
         }
     }
     else if(m_gameWidget->m_gameActive==false){
-        m_userDb.sort();
+        //m_userDb.sort();
         SoundManager::instance().playRankBgm();
         RankingDialog dialog(m_userDb,this);
         if (dialog.exec() != QDialog::Accepted) {
@@ -289,7 +289,7 @@ void MainWindow::on_registerBtn_clicked()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    if (m_currentUser) {
+    if (m_currentUser && !m_currentUser->isAdmin()) {
         QDateTime now = QDateTime::currentDateTime();
         int secs = m_loginTime.secsTo(now);
         if (secs > 0) {
