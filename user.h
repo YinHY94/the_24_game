@@ -2,6 +2,7 @@
 #define USER_H
 
 #include <QString>
+#include <QVector>
 
 class User
 {
@@ -11,7 +12,7 @@ public:
     QString role;
     int totalUseSeconds = 0; // 累计使用时长（秒）
     int sessionCount    = 0; // 登录次数
-    int click_time[3];
+    std::array<int, 3> click_time = {0, 0, 0};
     int score = 0;
 
     User() = default;
@@ -25,6 +26,8 @@ public:
         , score(s)
         , totalUseSeconds(totalSec)
         , sessionCount(sessions)
+        , role(QString("user"))
+        , click_time({0,0,0})
     {}
 
     // 验证账号密码

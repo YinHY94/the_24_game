@@ -251,7 +251,10 @@ void MainWindow::on_rankBtn_clicked(){
         SoundManager::instance().playRankBgm();
         RankingDialog dialog(m_userDb,this);
         if (dialog.exec() != QDialog::Accepted) {
-            SoundManager::instance().playLoginBgm();
+            if (m_adminWidget==nullptr)
+                SoundManager::instance().playLoginBgm();
+            else
+                SoundManager::instance().playMenuBgm();
             return;
         }
     }

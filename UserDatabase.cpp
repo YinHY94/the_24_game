@@ -45,9 +45,9 @@ bool UserDatabase::loadFromFile(const QString& filename)
         user.role = obj["role"].toString();
         user.sessionCount    = obj["sessionCount"].toInt();
         user.totalUseSeconds = obj ["totalUseSeconds"].toInt();
-        user.click_time[0] = obj ["easy"].toInt();
-        user.click_time[1] = obj ["normal"].toInt();
-        user.click_time[2] = obj ["hard"].toInt();
+        user.click_time.at(0) = obj ["easy"].toInt();
+        user.click_time.at(1) = obj ["normal"].toInt();
+        user.click_time.at(2) = obj ["hard"].toInt();
         if (!user.name.isEmpty()) {
             m_users.append(user);
         }
@@ -66,9 +66,9 @@ bool UserDatabase::saveToFile(const QString& filename) const
         obj["role"] = user.role;
         obj["totalUseSeconds"] = user.totalUseSeconds;
         obj["sessionCount"]    = user.sessionCount;
-        obj["easy"] = user.click_time[0];
-        obj["normal"] = user.click_time[1];
-        obj["hard"] = user.click_time[2];
+        obj["easy"] = user.click_time.at(0);
+        obj["normal"] = user.click_time.at(1);
+        obj["hard"] = user.click_time.at(2);
         array.append(obj);
     }
 
@@ -134,9 +134,9 @@ bool UserDatabase::addUsageTime(const QString& name, int seconds)
 bool UserDatabase::updateUserData(const User& user){
     for (User& u : m_users){
         if (u.name == user.name){
-            u.click_time[0]=user.click_time[0];
-            u.click_time[1]=user.click_time[1];
-            u.click_time[2]=user.click_time[2];
+            u.click_time.at(0)=user.click_time.at(0);
+            u.click_time.at(1)=user.click_time.at(1);
+            u.click_time.at(2)=user.click_time.at(2);
             saveToFile(m_filename);
             return true;
         }

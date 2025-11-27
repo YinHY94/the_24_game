@@ -491,7 +491,7 @@ void GameWidget::chooseDifficulty(){
             break;
 
     }
-    m_currentUser.click_time[m_difficulty]++;
+    m_currentUser.click_time.at(m_difficulty)++;
     m_userDatabase.updateUserData(m_currentUser);
 }
 

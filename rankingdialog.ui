@@ -117,7 +117,7 @@ QDialog { background-color: #0f172a; border-radius: 20px; }
       </size>
      </property>
      <property name="text">
-      <string>1. 超级无敌长名字玩家真的很长很长很长    999999 分</string>
+      <string>NO.1 暂无用户数据</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -148,7 +148,7 @@ QDialog { background-color: #0f172a; border-radius: 20px; }
       </size>
      </property>
      <property name="text">
-      <string>2. 我名字也很长哈哈哈哈哈哈哈哈哈    888888 分</string>
+      <string>NO.2 暂无用户数据</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -179,7 +179,7 @@ QDialog { background-color: #0f172a; border-radius: 20px; }
       </size>
      </property>
      <property name="text">
-      <string>3. 短名字玩家    777777 分</string>
+      <string>NO.3 暂无用户数据</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>

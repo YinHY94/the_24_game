@@ -131,9 +131,9 @@ public:
     {
         RankingDialog->setWindowTitle(QCoreApplication::translate("RankingDialog", "\346\216\222\350\241\214\346\246\234", nullptr));
         labelTitle->setText(QCoreApplication::translate("RankingDialog", "\346\216\222\350\241\214\346\246\234", nullptr));
-        labelRank1->setText(QCoreApplication::translate("RankingDialog", "1. \350\266\205\347\272\247\346\227\240\346\225\214\351\225\277\345\220\215\345\255\227\347\216\251\345\256\266\347\234\237\347\232\204\345\276\210\351\225\277\345\276\210\351\225\277\345\276\210\351\225\277    999999 \345\210\206", nullptr));
-        labelRank2->setText(QCoreApplication::translate("RankingDialog", "2. \346\210\221\345\220\215\345\255\227\344\271\237\345\276\210\351\225\277\345\223\210\345\223\210\345\223\210\345\223\210\345\223\210\345\223\210\345\223\210\345\223\210\345\223\210    888888 \345\210\206", nullptr));
-        labelRank3->setText(QCoreApplication::translate("RankingDialog", "3. \347\237\255\345\220\215\345\255\227\347\216\251\345\256\266    777777 \345\210\206", nullptr));
+        labelRank1->setText(QCoreApplication::translate("RankingDialog", "NO.1 \346\232\202\346\227\240\347\224\250\346\210\267\346\225\260\346\215\256", nullptr));
+        labelRank2->setText(QCoreApplication::translate("RankingDialog", "NO.2 \346\232\202\346\227\240\347\224\250\346\210\267\346\225\260\346\215\256", nullptr));
+        labelRank3->setText(QCoreApplication::translate("RankingDialog", "NO.3 \346\232\202\346\227\240\347\224\250\346\210\267\346\225\260\346\215\256", nullptr));
     } // retranslateUi
 
 };

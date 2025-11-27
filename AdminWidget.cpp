@@ -131,9 +131,9 @@ void AdminWidget::populateTable()
         auto *itemSession = new QTableWidgetItem(QString::number(u.sessionCount));
 
         // 各难度游玩次数（click_time[0/1/2]）
-        auto *itemEasy   = new QTableWidgetItem(QString::number(u.click_time[0]));
-        auto *itemNormal = new QTableWidgetItem(QString::number(u.click_time[1]));
-        auto *itemHard   = new QTableWidgetItem(QString::number(u.click_time[2]));
+        auto *itemEasy   = new QTableWidgetItem(QString::number(u.click_time.at(0)));
+        auto *itemNormal = new QTableWidgetItem(QString::number(u.click_time.at(1)));
+        auto *itemHard   = new QTableWidgetItem(QString::number(u.click_time.at(2)));
 
         // 统一居中对齐
         itemName->setTextAlignment(Qt::AlignCenter);
