@@ -53,5 +53,16 @@
         "score": 0,
         "sessionCount": 2,
         "totalUseSeconds": 0
+    },
+    {
+        "easy": 1,
+        "hard": 1,
+        "name": "殷浩焱",
+        "normal": 0,
+        "password": "123456",
+        "role": "user",
+        "score": 175,
+        "sessionCount": 1,
+        "totalUseSeconds": 168
     }
 ]

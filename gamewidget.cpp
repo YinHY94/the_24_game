@@ -27,6 +27,7 @@ GameWidget::GameWidget(UserDatabase& m_userDb,User currentUser, QWidget *parent)
     m_gameActive(false),
     m_solvable(false),
     m_hintUsed(false),
+    m_hint_isCalc(false),
     m_timeLimit(60),
     m_elapsed(0),
     m_roundIndex(0),
@@ -90,6 +91,7 @@ void GameWidget::startGame(){
     resetGame();
     chooseDifficulty();
     m_hintUsed=false;
+    m_hint_isCalc=false;
     startRound();
     m_gameActive=true;
     // 【开始游戏】
@@ -273,6 +275,7 @@ void GameWidget::finishRound(bool timeoutOrWrong)
             "QPushButton:hover { background-color: #00E5FF; }"
             "QPushButton:pressed { background-color: #00A6B8; }"
             );
+
         if (m_totalScore > m_currentUser.score){
             m_currentUser.score=m_totalScore;
         }
@@ -309,6 +312,7 @@ void GameWidget::finishRound(bool timeoutOrWrong)
                 .arg(m_lastRoundScore)
                 .arg(m_totalScore)
             );
+
         if (m_totalScore > m_currentUser.score){
             m_currentUser.score=m_totalScore;
         }
@@ -426,8 +430,11 @@ void GameWidget::updateCardsOnUI()
 
 
 
-int GameWidget::calcRoundScore() const
+int GameWidget::calcRoundScore()
 {
+
+    constexpr double hintMul = 0.75;
+
     // 1. 参考时间：90秒
     // const int baseTime = 90;
 
@@ -464,9 +471,16 @@ int GameWidget::calcRoundScore() const
         break;
     }
 
-    // 4. 最终得分：基础满分-时间用时*比例
-    int score = static_cast<int>((baseScore - t * ratio) * difficultyMul + 0.5); // 四舍五入
+    int score=0;
+    if (!m_hint_isCalc && m_hintUsed){
+        score = static_cast<int>((baseScore - t * ratio) * difficultyMul * hintMul + 0.5); // 四舍五入
+        m_hint_isCalc=true;
+    }
 
+    else{
+    // 4. 最终得分：基础满分-时间用时*比例
+        score = static_cast<int>((baseScore - t * ratio) * difficultyMul + 0.5); // 四舍五入
+    }
 
     if (score < 0) score = 0;
     return score;
@@ -513,7 +527,7 @@ void GameWidget::on_m_hintBtn_clicked(){
     m_hintUsed = true;
     ui->m_hintBtn->setEnabled(false);
 
-    // 4. 根据当前题目是否可解，执行不同的提示策略
+    // 4. 根据当前题目是否有解，执行不同的提示策略
     if (m_solvable) {
         // ---------- 情况一：本题可算出 24，给出“挖去数字”的算式 ----------
         QString solution = m_logic.getSolution(m_numbers);  // 完整解法表达式

@@ -33,9 +33,10 @@ RuleDialog::RuleDialog(QWidget *parent)
         "<b>计分规则：</b><br>"
         "每局游戏在规定时间内<b>正确算出24</b>或正确判断“<b>NO</b>”，可获得 "
         // **高亮色改为青色 #00BCD4**
-        "<b style='color:#00BCD4;'>(100 − t) × n</b> 分数<br><br>"
+        "<b style='color:#00BCD4;'>(100 − t) × n × a</b> 分数<br><br>"
         "• t = 所用时间（秒）<br>"
-        "• n = 难度倍率（简单 1.00｜普通 1.05｜困难 1.10）<br><br>"
+        "• n = 难度倍率（简单 1.00｜普通 1.05｜困难 1.10）<br>"
+        "• a = 提示倍率（使用 0.75｜未使用 1.00）<br><br>"
         "若<b>超时</b>、或<b>能算出24却误判NO</b>，本局得 "
         // **警告色改为橙色 #FBBF24**
         "<span style='color:#FBBF24;'>0分</span><br><br>"

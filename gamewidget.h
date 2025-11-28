@@ -78,6 +78,7 @@ private:
     bool        m_roundActive;    ///< 当前是否处于答题中
     bool        m_solvable;       ///< 当前4个数是否能算出24
     bool        m_hintUsed;
+    bool        m_hint_isCalc;
     int         m_timeLimit;      ///< 当前题目的时间上限（秒）
     int         m_elapsed;        ///< 已用时间（秒）
     int         m_roundIndex;     ///< 当前是第几局（1~3），0表示还没开始
@@ -114,7 +115,7 @@ private:
     // void updateRecords(const QString &name, int score);
 
     /// 根据当前耗时和难度计算本局得分
-    int calcRoundScore() const;
+    int calcRoundScore() ;
 
 };
 
